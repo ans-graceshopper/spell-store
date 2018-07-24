@@ -10,6 +10,10 @@ const Order = db.define('order', {
     type: Sequelize.INTEGER,
     allowNull: false,
     defaultValue: 1 // after added to order so defaults to one
+  },
+  isCart: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
