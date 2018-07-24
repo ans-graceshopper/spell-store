@@ -3,7 +3,7 @@
 # useTabs: false # false
 semi: false # true
 singleQuote: true # false
-# trailingComma: none # none | es5 | all
+trailingComma: es5
 bracketSpacing: false # true
 # jsxBracketSameLine: false # false
 # arrowParens: avoid # avoid | always
