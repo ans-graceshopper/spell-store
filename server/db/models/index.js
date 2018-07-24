@@ -13,8 +13,8 @@ const Review = require('./review')
 User.hasMany(Order)
 Order.belongsTo(User)
 
-Spell.belongsToMany(Order)
-Order.belongsToMany(Spell)
+Spell.belongsToMany(Order, {through: 'OrderedSpells'})
+Order.belongsToMany(Spell, {through: 'OrderedSpells'})
 
 Review.belongsTo(User)
 User.hasMany(Review)
@@ -32,5 +32,5 @@ module.exports = {
   User,
   Spell,
   Order,
-  Review
+  Review,
 }
