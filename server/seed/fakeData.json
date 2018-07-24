@@ -1,0 +1,34 @@
+[
+  {
+    "title": "fake spell1",
+    "description": "a fake spell",
+    "price": 99,
+    "magic_school": "Alteration",
+    "skill_level": "Expert",
+    "magicka_cost": "15 points"
+  },
+  {
+    "title": "fake spell2",
+    "description": "a fake spell",
+    "price": 99,
+    "magic_school": "Destruction",
+    "skill_level": "Novice",
+    "magicka_cost": "99 points"
+  },
+  {
+    "title": "fake spell3",
+    "description": "a fake spell",
+    "price": 99,
+    "magic_school": "Restoration",
+    "skill_level": "Adept",
+    "magicka_cost": "33 points"
+  },
+  {
+    "title": "fake spell4",
+    "description": "a fake spell",
+    "price": 99,
+    "magic_school": "Conjuration",
+    "skill_level": "Master",
+    "magicka_cost": "12 points"
+  }
+]
