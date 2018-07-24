@@ -1,5 +1,6 @@
 const User = require('./user')
 const Spell = require('./spell')
+const Order = require('./order')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -16,5 +17,6 @@ const Spell = require('./spell')
  */
 module.exports = {
   User,
-  Spell
+  Spell,
+  Order
 }

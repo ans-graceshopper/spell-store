@@ -33,7 +33,7 @@ const Spell = db.define('spell', {
       max: 5.0
     }
   },
-  price: {type: Sequelize.STRING},
+  price: {type: Sequelize.FLOAT},
   magic_school: {type: Sequelize.STRING} /* eslint-disable camelcase*/,
   magickaCost: {type: Sequelize.STRING}
 })
