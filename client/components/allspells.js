@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getSpells} from '../store'
 import SpellList from './spelllist'
-import fakeData from '../../server/seed/fakeData'
 
 class AllSpells extends Component {
   constructor() {
@@ -36,20 +35,13 @@ class AllSpells extends Component {
           </select>
         </form>
         <SpellList
-          spells={fakeData.filter(spell => {
-            let include = false
-            if (this.state.magicSchool) {
-              if (spell.magic_school === this.state.magicSchool) {
-                include = true
-              }
-            }
-            if (this.state.skillLevel) {
-              if (spell.skill_level === this.state.skillLevel) {
-                include = include && true
-              }
-            }
-            if (include) return spell
-          })}
+          spells={this.props.spells
+            .filter(
+              spell => (magicSchool ? spell.magic_school === magicSchool : true)
+            )
+            .filter(
+              spell => (skillLevel ? spell.skill_level === skillLevel : true)
+            )}
         />
       </div>
     )

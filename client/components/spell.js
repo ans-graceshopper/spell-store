@@ -1,4 +1,10 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-const Spell = () => <li />
+const Spell = props => {
+  const {images, key} = props
+  return (
+    <li key={key}>
+      <p>{props.name}</p>
+    </li>
+  )
+}
 export default Spell
