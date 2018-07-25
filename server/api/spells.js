@@ -38,7 +38,7 @@ router.put('/:id', async (req, res, next) => {
       return next(err)
     }
     const updatedSpell = await spell.update(req.body)
-    res.json(updatedSpell) // TODO status
+    res.json(updatedSpell)
   } catch (err) {
     next(err)
   }

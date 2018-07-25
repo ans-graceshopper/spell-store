@@ -4,18 +4,18 @@ const pkg = require('../../package.json')
 const databaseName = pkg.name + (process.env.NODE_ENV === 'test' ? '-test' : '')
 
 // Amy & November v
-// const db = new Sequelize(
-//   process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`,
-//   {
-//     logging: false,
-//   }
-// )
+const db = new Sequelize(
+  process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`,
+  {
+    logging: false,
+  }
+)
 
 // Sarah v
-const db = new Sequelize('spellbinder', 'fsa', 'secretPassword123', {
-  logging: false,
-  dialect: 'postgres',
-})
+// const db = new Sequelize('spellbinder', 'fsa', 'secretPassword123', {
+//   logging: false,
+//   dialect: 'postgres',
+// })
 
 module.exports = db
 
