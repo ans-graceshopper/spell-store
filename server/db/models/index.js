@@ -13,8 +13,8 @@ const Review = require('./review')
 User.hasMany(Order)
 Order.belongsTo(User)
 
-Spell.belongsToMany(Order, {through: 'OrderedSpells'})
-Order.belongsToMany(Spell, {through: 'OrderedSpells'})
+Spell.belongsToMany(Order, {through: 'spellorders'})
+Order.belongsToMany(Spell, {through: 'spellorders'})
 
 Review.belongsTo(User)
 User.hasMany(Review)
