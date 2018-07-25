@@ -7,7 +7,7 @@ const SpellOrders = db.define('spellorders', {
     allowNull: false,
     defaultValue: 1, // after added to order so defaults to one
   },
-  priceAtOrder: {
+  price: {
     type: Sequelize.INTEGER,
     allowNull: true,
   },

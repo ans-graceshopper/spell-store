@@ -51,3 +51,5 @@ router.put('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+// add to cart route by spell id??

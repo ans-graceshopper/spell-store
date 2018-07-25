@@ -98,6 +98,5 @@ Ash Rune DR,Cast on a nearby surface it explodes when enemies are nearby immobil
 Detect Dead,Nearby dead can be seen through walls.,0,148 per second,Alteration,Expert
 Ebonyflesh,Improves the caster's armor rating by 100 points for 60 seconds.,0,341,Alteration,Expert
 Paralyze,Targets that fail to resist are paralyzed for 10 seconds.,0,450,Alteration,Expert
-,,0,,Alteration,Master
 Dragonhide,Caster ignores 80% of all physical damage for 30 seconds.,0,837,Alteration,Master
 Mass Paralysis,All targets in the area that fail to resist are paralyzed for 15 seconds.,0,937,Alteration,Master

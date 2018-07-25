@@ -13,7 +13,7 @@ const Review = require('./review')
 User.hasMany(Order)
 Order.belongsTo(User)
 
-Spell.belongsToMany(Order, {through: 'spellorders'})
+Spell.belongsToMany(Order, {through: 'spell'})
 Order.belongsToMany(Spell, {through: 'spellorders'})
 
 Review.belongsTo(User)
@@ -23,7 +23,7 @@ Review.belongsTo(Spell)
 Spell.hasMany(Review)
 
 /**
- * We'll export all of our models here, so that any time a module needs a model,
+ * We'll export all of.querySelector('selector')our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
