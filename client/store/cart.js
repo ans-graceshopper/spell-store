@@ -6,7 +6,7 @@ export const gotCart = cart => ({type: GOT_CART, cart})
 
 export const getCart = () => async dispatch => {
   try {
-    const {data} = await axios.get('/api/orders/cart')
+    const {data} = await axios.get('/api/cart')
     dispatch(gotCart(data))
   } catch (e) {
     console.error(e)
