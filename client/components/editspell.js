@@ -10,7 +10,7 @@ const blankState = {
   skill_level: '',
   price: 0,
   quantity: 0,
-  magickaCost: '',
+  magicka_cost: '',
 }
 
 class EditSpell extends Component {
@@ -23,7 +23,7 @@ class EditSpell extends Component {
       skill_level: 'loading...',
       price: 0,
       quantity: 0,
-      magickaCost: 'loading...',
+      magicka_cost: 'loading...',
     }
 
     this.handleChange = this.handleChange.bind(this)

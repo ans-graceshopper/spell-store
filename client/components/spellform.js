@@ -53,12 +53,12 @@ const SpellForm = props => {
         value={state.price}
       />
 
-      <label htmlFor="magickaCost">Magicka Cost</label>
+      <label htmlFor="magicka_cost">Magicka Cost</label>
       <input
         type="text"
-        name="magickaCost"
+        name="magicka_cost"
         onChange={handleChange}
-        value={state.magickaCost}
+        value={state.magicka_cost}
       />
 
       <button type="submit">Submit</button>
