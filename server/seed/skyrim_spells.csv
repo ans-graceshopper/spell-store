@@ -1,4 +1,4 @@
-name,description,price,magicka_cost,magic_school,skill_level
+title,description,price,magicka_cost,magic_school,skill_level
 Flames,A gout of fire inflicting a base damage of 8 points of fire damage per second. Targets on fire take extra damage. One of the two basic spells.,0,14 per second,Destruction,Novice
 Frostbite,A blast of cold inflicting a base damage of 8 points of frost damage per second to Health and Stamina.,0,16 per second,Destruction,Novice
 Sparks,Lightning which inflicts a base damage of 8 points of shock damage per second to Health and Magicka.,0,19 per second,Destruction,Novice
