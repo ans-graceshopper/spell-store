@@ -1,50 +1,57 @@
+const path = require('path')
 const db = require('../db')
 const Spell = require('../db/models/spell')
-const fakeData = require('./fakeData')
-// const fs = require('fs')
-//
-// const data = fs.readFileSync('skyrim_spells.csv', 'utf8')
+const fs = require('fs')
 
-//console.log(data)
+const csvPath = path.join(__dirname, './skyrim_spells.csv')
+const dataArr = fs.readFileSync(csvPath, 'utf8').split('\n')
 
+const arrayOfDatabaseObjects = data => {
+  const dbRows = data.slice(1, data.length)
+  let arrayOfDBObjects = []
+
+  for (let row = 0; row < dbRows.length; row++) {
+    let obj = {}
+    const properties = data[0].split(',')
+    let currentRow = dbRows[row].split(',')
+
+    for (let i = 0; i < properties.length; i++) {
+      obj[properties[i]] = currentRow[i]
+    }
+    arrayOfDBObjects.push(obj)
+  }
+  return arrayOfDBObjects
+}
+
+const arrayOfSpellObjects = arrayOfDatabaseObjects(dataArr)
+
+const seed = async () => {
+  try {
+    await db.sync({force: true})
+
+    for (let i = 0; i < arrayOfSpellObjects.length; i++) {
+      let spell = arrayOfSpellObjects[i]
+      if (spell.title) {
+        await Spell.create(spell)
+      }
+    }
+  } catch (err) {
+    console.log('Oh noes! Seeding disaster!', err)
+  }
+  console.log('Seeding success!')
+}
+
+// If you have problmes and want to seed fake data, uncomment this (and the import)
 // const seed = async () => {
+//   await db.sync({force: true})
+//   await fakeData.forEach(async spell => {
+//     await Spell.create(spell)
+//   })
 //   try {
-//     await db.sync({force: true})
-//     const parsed = data.split('\n')
-//
-//     await parsed.forEach(async row2 => {
-//       let row = row2.split(',')
-//       console.log(row)
-//       try {
-//         await Spell.create({
-//           title: row[0],
-//           description: row[1],
-//           magicka_cost: row[2],
-//           price: row[3],
-//           magic_school: row[4],
-//           skill_level: row[5]
-//         })
-//       } catch (err) {
-//         console.log(err)
-//       }
-//     })
-//
 //     console.log('Seeding success!')
 //   } catch (err) {
 //     console.log('Oh noes! Seeding disaster!', err)
 //   }
 // }
-
-const seed = async () => {
-  await db.sync({force: true})
-  await fakeData.forEach(async spell => {
-    await Spell.create(spell)
-  })
-  try {
-    console.log('Seeding success!')
-  } catch (err) {
-    console.log('Oh noes! Seeding disaster!', err)
-  }
-}
-
+//
 seed()
