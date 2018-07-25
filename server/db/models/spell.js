@@ -25,7 +25,7 @@ const Spell = db.define('spell', {
     allowNull: false,
     defaultValue: 0,
   },
-
+  // remove; add to review model, add instance method to get average of reviews
   rating: {
     type: Sequelize.FLOAT,
     validate: {
@@ -34,8 +34,9 @@ const Spell = db.define('spell', {
     },
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.FLOAT, // change to int; store as cents (smallest possible unit)
   },
+  // make own table for extensibility; in short term make enum
   magic_school: {
     type: Sequelize.STRING,
   } /* eslint-disable camelcase*/,

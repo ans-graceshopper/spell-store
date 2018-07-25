@@ -32,7 +32,7 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
-
+//  V middleware for securing routes goes here
 router.put('/:id', async (req, res, next) => {
   try {
     if (req.user.isAdmin) {
