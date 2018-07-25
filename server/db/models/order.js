@@ -2,15 +2,6 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Order = db.define('order', {
-  price: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    get() {
-      return this.getDataValue('price') / 100 // TODO make price more robust
-    },
-  },
-  // explicitly define in through table
-
   isCart: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
