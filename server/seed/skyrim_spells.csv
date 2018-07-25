@@ -81,8 +81,6 @@ Dread Zombie,Reanimate a very powerful dead body to fight for the player for 60 
 Expel Daedra,Powerful summoned daedra creatures are sent back to Oblivion.,0,215,Conjuration,Expert
 Dead Thrall,Reanimate a dead body permanently to fight for the player.,0,1000,Conjuration,Master
 Flame Thrall,Summons a Flame Atronach permanently.,0,900,Conjuration,Master
-Frost Thrall,Summons a Frost Atronach permanently.,0,1100,Conjuration,Master
-Storm Thrall,Summons a Storm Atronach permanently.,0,1200,Conjuration,Master
 Candlelight,Creates a hovering light that lasts for 60 seconds.,0,21,Alteration,Novice
 Equilibrium,Convert health into magicka at a rate of 25 points per second. Caster can be killed by this effect.,0,0 (25 health per second),Alteration,Novice
 Oakflesh,Improves the caster's armor rating by 40 points for 60 seconds.,0,103,Alteration,Novice
@@ -98,6 +96,5 @@ Ash Rune DR,Cast on a nearby surface it explodes when enemies are nearby immobil
 Detect Dead,Nearby dead can be seen through walls.,0,148 per second,Alteration,Expert
 Ebonyflesh,Improves the caster's armor rating by 100 points for 60 seconds.,0,341,Alteration,Expert
 Paralyze,Targets that fail to resist are paralyzed for 10 seconds.,0,450,Alteration,Expert
-,,0,,Alteration,Master
 Dragonhide,Caster ignores 80% of all physical damage for 30 seconds.,0,837,Alteration,Master
 Mass Paralysis,All targets in the area that fail to resist are paralyzed for 15 seconds.,0,937,Alteration,Master

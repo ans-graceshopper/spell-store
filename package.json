@@ -15,7 +15,7 @@
     "precommit": "# lint-staged # un-comment to enable",
     "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
     "postinstall": "touch secrets.js",
-    "seed": "node ./server/seed/seed.js; node script/seed.js",
+    "seed": "node script/seed.js",
     "start": "node server",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",

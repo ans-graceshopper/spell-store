@@ -54,7 +54,7 @@ const Spell = db.define('spell', {
     validate: {notEmpty: true},
   },
   skill_level: {
-    type: Sequelize.ENUM('Novice', 'Adept', 'Expert', 'Master'),
+    type: Sequelize.ENUM('Novice', 'Apprentice', 'Adept', 'Expert', 'Master'),
     allowNull: false,
     validate: {notEmpty: true},
   },
