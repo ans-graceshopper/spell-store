@@ -10,6 +10,7 @@ const Order = db.define('order', {
   status: {
     type: Sequelize.ENUM('open', 'submitted', 'paid', 'shipped', 'completed'),
     allowNull: false,
+    defaultValue: 'open'
   },
 })
 
