@@ -11,6 +11,9 @@ const Spell = db.define('spell', {
   description: {
     type: Sequelize.TEXT,
     allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
 
   images: {
@@ -41,10 +44,19 @@ const Spell = db.define('spell', {
   },
   // make own table for extensibility; in short term make enum
   magic_school: {
-    type: Sequelize.STRING,
-  } /* eslint-disable camelcase*/,
+    type: Sequelize.ENUM(
+      'Alteration',
+      'Conjuration',
+      'Destruction',
+      'Restoration'
+    ),
+    allowNull: false,
+    validate: {notEmpty: true},
+  },
   skill_level: {
-    type: Sequelize.STRING,
+    type: Sequelize.ENUM('Novice', 'Adept', 'Expert', 'Master'),
+    allowNull: false,
+    validate: {notEmpty: true},
   },
   magicka_cost: {
     type: Sequelize.STRING,

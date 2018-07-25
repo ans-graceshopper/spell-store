@@ -88,7 +88,7 @@ describe('Spell model', () => {
 
     it('magic_school category must be a valid category', () => {
       testSpell.magic_school = 'The New School'
-      return testSpell.validate().then(
+      return testSpell.save().then(
         () => {
           throw new Error(
             'validation should fail when magic school is not one of some predetermined magic schools'
@@ -102,7 +102,7 @@ describe('Spell model', () => {
 
     it('skill_level category must be a valid category', () => {
       testSpell.skill_level = 'Archmage'
-      return testSpell.validate().then(
+      return testSpell.save().then(
         () => {
           throw new Error(
             'validation should fail when skill_level is not one out of some predetermined skill levels'
