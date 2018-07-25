@@ -2,6 +2,7 @@ const User = require('./user')
 const Spell = require('./spell')
 const Order = require('./order')
 const Review = require('./review')
+const SpellOrders = require('./spellorders')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -13,8 +14,8 @@ const Review = require('./review')
 User.hasMany(Order)
 Order.belongsTo(User)
 
-Spell.belongsToMany(Order, {through: 'spell'})
-Order.belongsToMany(Spell, {through: 'spellorders'})
+Spell.belongsToMany(Order, {through: SpellOrders})
+Order.belongsToMany(Spell, {through: SpellOrders})
 
 Review.belongsTo(User)
 User.hasMany(Review)

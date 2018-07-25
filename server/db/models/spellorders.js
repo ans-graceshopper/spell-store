@@ -9,7 +9,6 @@ const SpellOrders = db.define('spellorders', {
   },
   price: {
     type: Sequelize.INTEGER,
-    allowNull: true,
   },
 })
 
