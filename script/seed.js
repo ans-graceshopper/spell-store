@@ -47,7 +47,6 @@ const spellSeed = async () => {
 
 const createOrders = async () => {
   try {
-    const spell0 = await Spell.findById(0)
     const spell1 = await Spell.findById(1)
     const spell2 = await Spell.findById(2)
 
@@ -58,7 +57,7 @@ const createOrders = async () => {
 
     await order1.setUser(cody)
 
-    await order1.addSpell(spell0)
+    await order1.addSpell([spell1, spell2])
 
     console.log('Orders Seeded Successfully!')
   } catch (err) {
