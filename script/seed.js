@@ -20,8 +20,6 @@ const allSpells = require('../server/seed/spellseed')
  */
 
 async function userSeed() {
-  await db.sync({force: true})
-  console.log('db synced!')
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
   const users = await Promise.all([
@@ -54,13 +52,13 @@ const createOrders = async () => {
     const spell2 = await Spell.findById(2)
 
     const cody = await User.findById(1)
-    console.log(cody)
+    //console.log(cody)
 
     const order1 = await Order.create({isCart: true, status: 'open'})
 
     await order1.setUser(cody)
 
-    await order1.addSpells([spell0, spell1, spell2])
+    await order1.addSpell(spell0)
 
     console.log('Orders Seeded Successfully!')
   } catch (err) {
@@ -74,6 +72,9 @@ const createOrders = async () => {
 async function runSeed() {
   console.log('seeding...')
   try {
+    await db.sync({force: true})
+    console.log('db synced!')
+
     await userSeed()
     await spellSeed()
     await createOrders()
