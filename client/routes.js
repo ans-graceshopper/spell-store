@@ -9,6 +9,7 @@ import {
   AllSpells,
   AddSpell,
   EditSpell,
+  Cart
 } from './components'
 import {me} from './store'
 
@@ -31,6 +32,7 @@ class Routes extends Component {
         <Route exact path="/spells/add" component={AddSpell} />
         <Route exact path="/spells/:id/edit" component={EditSpell} />
         <Route path="/spells" component={AllSpells} />
+        <Route path="/cart" component={Cart} />
 
         {isLoggedIn && (
           <Switch>

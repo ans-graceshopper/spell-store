@@ -9,7 +9,9 @@ const Spell = props => {
       {user.isAdmin ? (
         <NavLink to={`/spells/${spell.id}/edit`}>Edit</NavLink>
       ) : (
-        <div />
+        <div>
+          <button>Add to Cart (NOT WORKING)</button>
+        </div>
       )}
     </li>
   )
