@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import {getSpells} from '../store'
+import {getSpells, me} from '../store'
 import SpellList from './spelllist'
 
 class AllSpells extends Component {
@@ -20,9 +20,11 @@ class AllSpells extends Component {
 
   render() {
     const {magicSchool, skillLevel} = this.state
+    const {user} = this.props
+
     return (
       <div>
-        <NavLink to="/spells/add">Add Spell</NavLink>
+        {user.isAdmin ? <NavLink to="/spells/add">Add Spell</NavLink> : <div />}
         <form>
           <h4>School of magic</h4>
           <select name="magicSchool" onChange={this.handleChange}>
@@ -55,6 +57,7 @@ class AllSpells extends Component {
 
 const mapStateToProps = state => ({
   spells: state.spells,
+  user: state.user,
 })
 
 const mapDispatchToProps = dispatch => ({
