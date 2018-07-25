@@ -55,3 +55,5 @@ const seed = async () => {
 // }
 //
 seed()
+  .catch(err => console.log(err, err.message, err.stack))
+  .then(() => db.close())
