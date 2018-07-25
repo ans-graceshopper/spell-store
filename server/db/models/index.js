@@ -1,7 +1,6 @@
 const User = require('./user')
 const Spell = require('./spell')
 const Order = require('./order')
-const SpellOrders = require('./spellorders')
 const Review = require('./review')
 
 /**
@@ -14,8 +13,8 @@ const Review = require('./review')
 User.hasMany(Order)
 Order.belongsTo(User)
 
-Spell.belongsToMany(Order, {through: SpellOrders})
-Order.belongsToMany(Spell, {through: SpellOrders})
+Spell.belongsToMany(Order, {through: 'spell'})
+Order.belongsToMany(Spell, {through: 'spellorders'})
 
 Review.belongsTo(User)
 User.hasMany(Review)
@@ -24,7 +23,7 @@ Review.belongsTo(Spell)
 Spell.hasMany(Review)
 
 /**
- * We'll export all of our models here, so that any time a module needs a model,
+ * We'll export all of.querySelector('selector')our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
@@ -33,6 +32,5 @@ module.exports = {
   User,
   Spell,
   Order,
-  SpellOrders,
   Review,
 }
