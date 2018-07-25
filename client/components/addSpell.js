@@ -10,7 +10,7 @@ const blankState = {
   skill_level: '',
   price: 0,
   quantity: 0,
-  magickaCost: '',
+  magicka_cost: '',
 }
 
 class AddSpell extends React.Component {
