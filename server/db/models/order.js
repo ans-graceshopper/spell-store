@@ -3,18 +3,22 @@ const db = require('../db')
 
 const Order = db.define('order', {
   price: {
-    type: Sequelize.FLOAT,
-    allowNull: false,
-  },
-  // explicitly define in through table
-  quantity: {
     type: Sequelize.INTEGER,
     allowNull: false,
-    defaultValue: 1, // after added to order so defaults to one
+    get() {
+      return this.getDataValue('price') / 100 // TODO make price more robust
+    },
   },
+  // explicitly define in through table
+
   isCart: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
+  },
+
+  status: {
+    type: Sequelize.ENUM('open', 'submitted', 'paid', 'shipped', 'completed'),
+    allowNull: false,
   },
 })
 
