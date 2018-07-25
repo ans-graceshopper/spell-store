@@ -22,8 +22,12 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const spell = await Spell.create(req.body)
-    res.status(201).json(spell)
+    if (req.user.isAdmin) {
+      const spell = await Spell.create(req.body)
+      res.status(201).json(spell)
+    } else {
+      res.sendStatus(404)
+    }
   } catch (err) {
     next(err)
   }
@@ -31,14 +35,18 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const spell = await Spell.findById(req.params.id)
-    if (!spell) {
-      const err = new Error('Spell not found!')
-      err.status(404)
-      return next(err)
+    if (req.user.isAdmin) {
+      const spell = await Spell.findById(req.params.id)
+      if (!spell) {
+        const err = new Error('Spell not found!')
+        err.status(404)
+        return next(err)
+      }
+      const updatedSpell = await spell.update(req.body)
+      res.json(updatedSpell)
+    } else {
+      res.sendStatus(404)
     }
-    const updatedSpell = await spell.update(req.body)
-    res.json(updatedSpell)
   } catch (err) {
     next(err)
   }
