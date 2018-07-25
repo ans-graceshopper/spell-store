@@ -15,3 +15,14 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+// get all orders for logged in user
+router.get('/:id', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id)
+    const orderHistory = await user.getOrders()
+    res.json(orderHistory)
+  } catch (err) {
+    next(err)
+  }
+})
