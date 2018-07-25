@@ -54,13 +54,13 @@ const createOrders = async () => {
     const spell2 = await Spell.findById(2)
 
     const cody = await User.findById(1)
-    console.log(cody)
+    //console.log(cody)
 
     const order1 = await Order.create({isCart: true, status: 'open'})
 
     await order1.setUser(cody)
 
-    await order1.addSpells([spell0, spell1, spell2])
+    //await order1.addSpells([spell0, spell1, spell2])
 
     console.log('Orders Seeded Successfully!')
   } catch (err) {
