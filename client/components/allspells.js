@@ -6,7 +6,10 @@ import SpellList from './spelllist'
 class AllSpells extends Component {
   constructor() {
     super()
-    this.state = {magicSchool: '', skillLevel: ''}
+    this.state = {
+      magicSchool: '',
+      skillLevel: '',
+    }
   }
   componentDidMount() {
     this.props.fetchSpells()
