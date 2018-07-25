@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {NavLink} from 'react-router-dom'
 import {getSpells} from '../store'
 import SpellList from './spelllist'
 
@@ -21,6 +22,7 @@ class AllSpells extends Component {
     const {magicSchool, skillLevel} = this.state
     return (
       <div>
+        <NavLink to="/spells/add">Add Spell</NavLink>
         <form>
           <h4>School of magic</h4>
           <select name="magicSchool" onChange={this.handleChange}>

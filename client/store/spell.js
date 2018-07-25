@@ -1,10 +1,12 @@
 import axios from 'axios'
 
-const GOT_SPELLS = 'GOT_SPELLS'
-const ADD_SPELL = 'ADD_SPELL'
+const GOT_SPELLS = 'GOT_SPELLS',
+  CREATED_SPELL = 'CREATED_SPELL',
+  UPDATED_SPELL = 'UPDATED_SPELL'
 
 export const gotSpells = spells => ({type: GOT_SPELLS, spells})
-export const addSpell = spellData => ({type: ADD_SPELL, spellData})
+export const createdSpell = spell => ({type: CREATED_SPELL, spell})
+export const updatedSpell = spell => ({type: UPDATED_SPELL, spell})
 
 export const getSpells = () => async dispatch => {
   try {
@@ -15,27 +17,43 @@ export const getSpells = () => async dispatch => {
   }
 }
 
-export const postSpell = spellData => async dispatch => {
+export const createSpell = spell => async dispatch => {
   try {
-    const {data} = await axios.post('/api/spells', spellData)
-    dispatch(addSpell(data))
+    const {data} = await axios.post('/api/spells', spell)
+    dispatch(createdSpell(data))
   } catch (e) {
     console.error(e)
   }
 }
 
-const initialState = []
+export const updateSpell = spell => async dispatch => {
+  try {
+    const {data} = await axios.put(`/api/spells/${spell.id}`, spell)
+    dispatch(updatedSpell(data))
+  } catch (e) {
+    console.error(e)
+  }
+}
 
-const spellReducer = (state = initialState, action) => {
+const initialSpells = []
+
+// to (hopefully) REDUCE confusion, state shall be just called 'spells', since it's just the array of spells, with no other properties or anything, at the moment.
+
+const spellReducer = (spells = initialSpells, action) => {
   switch (action.type) {
     case GOT_SPELLS: {
       return action.spells
     }
-    case ADD_SPELL: {
-      return [...state.spells, action.spellData]
+    case CREATED_SPELL: {
+      return [...spells, action.spell]
+    }
+    case UPDATED_SPELL: {
+      return spells
+        .filter(spell => spell.id !== action.spell.id)
+        .concat([action.spell])
     }
     default: {
-      return state
+      return spells
     }
   }
 }

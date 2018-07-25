@@ -1,52 +1,69 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {addSpell} from '../store'
 
-class SpellForm extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      title: '', //etc. will add later
-    }
-  }
+const SpellForm = props => {
+  const {handleChange, handleSubmit, state} = props
 
-  handleChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-    })
-  }
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="title">Spell Title</label>
+      <input
+        type="text"
+        name="title"
+        onChange={handleChange}
+        value={state.title}
+      />
 
-  handleSubmit = evt => {
-    evt.preventDefault()
-    console.log(this.state)
-    this.props.addSpell(this.state)
-    this.setState(newState) // TODO
-  }
+      <label htmlFor="description">Spell Description</label>
+      <input
+        type="text"
+        name="description"
+        onChange={handleChange}
+        value={state.description}
+      />
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="name">Spell Title</label>
-        <input
-          type="text"
-          name="name"
-          onChange={this.handleChange}
-          value={this.state.title}
-        />
+      <label htmlFor="skill_level">Skill Level</label>
+      <select
+        name="skill_level"
+        value={state.skill_level}
+        onChange={handleChange}
+      >
+        <option value="Novice">Novice</option>
+        <option value="Adept">Adept</option>
+        <option value="Expert">Expert</option>
+        <option value="Master">Master</option>
+      </select>
 
-        <button type="submit">Add new spell!</button>
-      </form>
-    )
-  }
+      <label htmlFor="magic_school">Magic School</label>
+      <select
+        name="magic_school"
+        value={state.magic_school}
+        onChange={handleChange}
+      >
+        <option value="Restoration">Restoration</option>
+        <option value="Destruction">Destruction</option>
+        <option value="Conjuration">Conjuration</option>
+        <option value="Alteration">Alteration</option>
+      </select>
+
+      <label htmlFor="price">Price</label>
+      <input
+        type="number"
+        name="price"
+        onChange={handleChange}
+        value={state.price}
+      />
+
+      <label htmlFor="magickaCost">Magicka Cost</label>
+      <input
+        type="text"
+        name="magickaCost"
+        onChange={handleChange}
+        value={state.magickaCost}
+      />
+
+      <button type="submit">Submit</button>
+    </form>
+  )
 }
 
-const mapDispatch = dispatch => {
-  return {
-    addSpell: spellData => {
-      const thunk = addSpell(spellData)
-      dispatch(thunk)
-    },
-  }
-}
-
-export default connect(null, mapDispatch)(SpellForm)
+export default SpellForm
