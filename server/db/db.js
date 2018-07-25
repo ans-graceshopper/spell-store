@@ -7,6 +7,7 @@ const createDatabase = () => {
   if (process.env.USER === 'notnull') {
     const db = new Sequelize('spellbinder', 'fsa', 'secretPassword123', {
       dialect: 'postgres',
+      logging: false,
     })
     return db
   } else {
@@ -21,24 +22,6 @@ const createDatabase = () => {
 }
 
 const db = createDatabase()
-// Amy & November v
-// const db = new Sequelize(
-//   process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`,
-//   {
-//     logging: false,
-//   }
-// )
-
-// Amy & November v
-// const db = new Sequelize(
-//   process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`,
-//   {
-//     logging: false,
-//   }
-// )
-
-// Sarah v
-//const db = new Sequelize()
 
 module.exports = db
 
