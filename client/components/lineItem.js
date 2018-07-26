@@ -1,16 +1,22 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {removeFromCart} from '../store'
 
 const LineItem = props => {
-  const {spell} = props
+  const {spell, removeSpell} = props
   // console.log("LINE ITEM", spell)
   return (
     <div>
       <h3>{spell.title}</h3>
       <p>Quantity: {spell.spellorders.quantity}</p>
       <p>Price: {spell.spellorders.price * spell.spellorders.quantity}</p>
-      <button>Remove (NOT WORKING YET)</button>
+      <button onClick={() => removeSpell(spell)}>Remove</button>
     </div>
   )
 }
 
-export default LineItem
+const mapDispatchToProps = dispatch => ({
+  removeSpell: spell => dispatch(removeFromCart(spell)),
+})
+
+export default connect(null, mapDispatchToProps)(LineItem)
