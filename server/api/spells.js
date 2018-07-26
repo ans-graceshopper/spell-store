@@ -22,6 +22,16 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.get('/:id/reviews', async (req, res, next) => {
+  try {
+    const spell = await Spell.findById(req.params.id)
+    const reviews = await spell.getReviews()
+    res.json(reviews)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     if (req.user.isAdmin) {
