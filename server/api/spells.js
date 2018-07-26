@@ -1,10 +1,10 @@
 const router = require('express').Router()
-const {Spell} = require('../db/models')
+const {Spell, Review} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const spells = await Spell.findAll()
+    const spells = await Spell.findAll({include: {model: Review}})
     res.json(spells)
   } catch (err) {
     next(err)
@@ -13,7 +13,9 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const spells = await Spell.findById(req.params.id)
+    const spells = await Spell.findById(req.params.id, {
+      include: {model: Review},
+    })
     res.json(spells)
   } catch (err) {
     next(err)

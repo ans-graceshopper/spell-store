@@ -7,9 +7,10 @@ import {
   Signup,
   UserHome,
   AllSpells,
+  SpellDetail,
   AddSpell,
   EditSpell,
-  Cart
+  Cart,
 } from './components'
 import {me} from './store'
 
@@ -31,6 +32,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/spells/add" component={AddSpell} />
         <Route exact path="/spells/:id/edit" component={EditSpell} />
+        <Route exact path="/spells/:id" component={SpellDetail} />
         <Route path="/spells" component={AllSpells} />
         <Route path="/cart" component={Cart} />
 
