@@ -19,5 +19,6 @@ const Review = db.define('review', {
 })
 
 // TODO add hook to update overall Spell rating when a review is submitted
+// sh: I believe this will be done in an eager loading on the Spell axios request
 
 module.exports = Review
