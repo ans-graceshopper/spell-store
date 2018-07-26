@@ -4,8 +4,14 @@ const db = require('../server/db')
 const {User} = require('../server/db/models')
 const {Spell} = require('../server/db/models')
 const {Order} = require('../server/db/models')
-const {SpellOrders} = require('../server/db/models')
+const {Review} = require('../server/db/models')
+//const {SpellOrders} = require('../server/db/models')
 const allSpells = require('../server/seed/spellseed')
+
+// necessary for sequelize functions such as and/or
+// see http://docs.sequelizejs.com/manual/tutorial/querying.html
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -47,19 +53,55 @@ const spellSeed = async () => {
 
 const createOrders = async () => {
   try {
-    const spell1 = await Spell.findById(1)
-    const spell2 = await Spell.findById(2)
+    // SELECT * FROM Spell WHERE id = 12 OR id = 13;
+    const spells = await Spell.findAll({
+      where: {
+        id: {
+          [Op.or]: [1, 2, 3],
+        },
+      },
+    })
 
-    const cody = await User.findById(1)
-    //console.log(cody)
+    const users = await User.findAll()
 
     const order1 = await Order.create({isCart: true, status: 'open'})
+    const order2 = await Order.create({isCart: false, status: 'submitted'})
 
-    await order1.setUser(cody)
+    await order1.setUser(users[0])
+    await order1.addSpells(spells)
 
-    await order1.addSpell([spell1, spell2])
+    await order2.setUser(users[1])
+    await order2.addSpells(spells)
 
     console.log('Orders Seeded Successfully!')
+  } catch (err) {
+    console.log('ERROR: ', err)
+  }
+}
+
+const createReviews = async () => {
+  try {
+    const spell = await Spell.findById(1)
+
+    const cody = await User.findById(1)
+    //const murray = await User.findById(2)
+
+    const review1 = await Review.create({
+      content: 'this spell is the best!',
+      rating: 5,
+    })
+
+    const review2 = await Review.create({
+      content: 'this spell is so fake!! I would give it zero stars if I could!',
+      rating: 1,
+    })
+
+    await review1.setUser(cody)
+    await review2.setUser(cody)
+
+    await spell.addReviews([review1, review2])
+
+    await console.log('Reviews Seeded Successfully!')
   } catch (err) {
     console.log('ERROR: ', err)
   }
@@ -77,6 +119,7 @@ async function runSeed() {
     await userSeed()
     await spellSeed()
     await createOrders()
+    await createReviews()
   } catch (err) {
     console.error(err)
     process.exitCode = 1
