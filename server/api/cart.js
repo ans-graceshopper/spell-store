@@ -10,8 +10,8 @@ router.use('/', async (req, res, next) => {
       req.cart = await Order.findOne({
         where: {
           userId: req.user.id,
-          isCart: true
-        }
+          isCart: true,
+        },
       })
       // returns an array of spell line items if user is logged in
       req.cart.spells = await req.cart.getSpells()
@@ -42,12 +42,12 @@ router.get('/', (req, res, next) => {
 router.put('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const spell = Spell.findById(req.body.id)
+      const spell = await Spell.findById(req.body.id)
       await req.cart.addSpell(spell)
-      res.json(req.cart)
     } else {
       req.cart = [...req.cart, req.body]
     }
+    res.json(req.cart)
   } catch (err) {
     next(err)
   }
@@ -60,13 +60,14 @@ router.put('/:spellId', async (req, res, next) => {
       const cartSpell = await SpellOrders.findOne({
         where: {
           spellId: req.params.spellId,
-          orderId: req.cart.id
-        }
+          orderId: req.cart.id,
+        },
       })
       const updated = await cartSpell.update(req.body)
       res.json(updated)
     } else {
       req.cart = [...req.cart, req.body]
+      res.json(req.body)
     }
   } catch (err) {
     next(err)
@@ -87,16 +88,13 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-// remove cart DELETE route ??
-// router.delete('/', async (req, res, next) => {
-//
-// })
-
 // delete a spell from the cart destroys a line item Order.removeSpell() ?
 router.delete('/:id', async (req, res, next) => {
   try {
     if (req.user) {
-      const currentSpell = req.cart.spells.find(spell => spell.id === +req.params.id)
+      const currentSpell = req.cart.spells.find(
+        spell => spell.id === +req.params.id
+      )
       await req.cart.removeSpell(currentSpell)
     } else {
       req.cart = req.cart.filter(spell => spell.id !== +req.params.id)
