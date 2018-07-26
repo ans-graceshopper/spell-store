@@ -23,8 +23,9 @@ class AllSpells extends Component {
     const {user} = this.props
 
     return (
-      <div>
-        {user.isAdmin ? <NavLink to="/spells/add">Add Spell</NavLink> : <div />}
+      <div className="container">
+        {user.isAdmin ? <NavLink to="/spells/add">Add Spell</NavLink> : ''}
+
         <form>
           <h4>School of magic</h4>
           <select name="magicSchool" onChange={this.handleChange}>
@@ -41,7 +42,9 @@ class AllSpells extends Component {
             <option value="Master">Master</option>
           </select>
         </form>
+
         <SpellList
+          handleClick={this.handleClick}
           spells={this.props.spells
             .filter(
               spell => (magicSchool ? spell.magic_school === magicSchool : true)
