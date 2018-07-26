@@ -5,17 +5,29 @@ const SpellDetail = props => {
   const {spells, user, match} = props
   const spellId = match.params.id
   const spell = spells.find(spl => spl.id === Number(spellId))
+  const {
+    title,
+    description,
+    quantity,
+    images,
+    id,
+    price,
+    magic_school,
+    skill_level,
+  } = spell
   return spell ? (
     <div>
-      <img src={spell.images[0]} />
+      <img src={images[0]} />
 
-      <h4>{spell.title}</h4>
-      <h5>Price: {spell.price} gold</h5>
-      <h5>Magic School: {spell.magic_school}</h5>
-      <h5>Skill Level: {spell.skill_level} </h5>
+      <h4>{title}</h4>
+      <p>{description}</p>
+      <h5>In stock: {quantity}</h5>
+      <h5>Price: {price} gold</h5>
+      <h5>Magic School: {magic_school}</h5>
+      <h5>Skill Level: {skill_level} </h5>
 
       {user.isAdmin ? (
-        <NavLink to={`/spells/${spell.id}/edit`}>Edit</NavLink>
+        <NavLink to={`/spells/${id}/edit`}>Edit</NavLink>
       ) : (
         <button className="btn-default" type="button">
           Add to Cart (NOT WORKING)

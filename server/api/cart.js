@@ -17,6 +17,9 @@ router.use('/', async (req, res, next) => {
       req.cart.spells = await req.cart.getSpells()
     } else {
       // if not logged in, cart is just an array of spell line items
+      if (!req.session.cart) {
+        req.session.cart = []
+      }
       req.cart = req.session.cart
     }
     next()
@@ -41,11 +44,11 @@ router.get('/', (req, res, next) => {
 // add a spell to cart PUT route edits order Order.addSpell() ?
 router.put('/', async (req, res, next) => {
   try {
+    const spell = await Spell.findById(req.body.id)
     if (req.user) {
-      const spell = await Spell.findById(req.body.id)
       await req.cart.addSpell(spell)
     } else {
-      req.cart = [...req.cart, req.body]
+      req.cart = [...req.cart, spell]
     }
     res.json(req.cart)
   } catch (err) {
@@ -75,13 +78,15 @@ router.put('/:spellId', async (req, res, next) => {
 })
 
 // add to cart POST route creates order tagged isCart
+// this method is intended to be called after user checks out, thus their cart must be archived
 router.post('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const newOrder = await Order.create({isCart: true})
+      const newOrder = await Order.create({isCart: true}) // make sure previous instance of Order model with isCart: true gets changed to false after new cart is initialized
       res.status(201).json(newOrder)
     } else {
       req.session.cart = []
+      req.cart = req.session.cart
     }
   } catch (err) {
     next(err)
