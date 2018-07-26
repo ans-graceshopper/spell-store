@@ -30,10 +30,20 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+
+        {/* SPELL ROUTES */}
         <Route exact path="/spells/add" component={AddSpell} />
         <Route exact path="/spells/:id/edit" component={EditSpell} />
         <Route exact path="/spells/:id" component={SpellDetail} />
         <Route path="/spells" component={AllSpells} />
+
+        {/* USER ROUTES */}
+        {/* <Route exact path="/users/add" component={AddUser} />
+        <Route exact path="/users/:id/edit" component={EditUser} />
+        <Route exact path="/users/:id" component={UserDetail} />
+        <Route path="/users" component={AllUsers} /> */}
+
+        {/* CART ROUTES */}
         <Route path="/cart" component={Cart} />
 
         {isLoggedIn && (

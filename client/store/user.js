@@ -29,7 +29,7 @@ export const me = () => async dispatch => {
     console.error(err)
   }
 }
-
+// method is form name, so login route or signup route
 export const auth = (email, password, method) => async dispatch => {
   let res
   try {
