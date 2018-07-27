@@ -56,10 +56,10 @@ const initialCart = []
 const cartReducer = (cart = initialCart, action) => {
   switch (action.type) {
     case GOT_CART: {
-      return action.cart
+      return action.cart.spells
     }
     case EDITED_CART: {
-      return cart.map(spell => {
+      return cart.spells.map(spell => {
         if (spell.id === action.spell.id) return action.spell
         else return spell
       })
