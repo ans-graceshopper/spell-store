@@ -1,102 +1,102 @@
 title,description,price,magicka_cost,magic_school,skill_level
-Flames,A gout of fire inflicting a base damage of 8 points of fire damage per second. Targets on fire take extra damage. One of the two basic spells.,0,14 per second,Destruction,Novice
-Frostbite,A blast of cold inflicting a base damage of 8 points of frost damage per second to Health and Stamina.,0,16 per second,Destruction,Novice
-Sparks,Lightning which inflicts a base damage of 8 points of shock damage per second to Health and Magicka.,0,19 per second,Destruction,Novice
-Arniel's Convection,Burns the target 1 point per second. Targets on fire take extra damage.,0,0 per second,Destruction,Novice
-Vampiric Drain,Absorb 2 3 4 or 5 points (depends upon the level of vampirism) of health from the target.,0,6 10 13 or 17 per second (depends upon the level of vampirism),Destruction,Novice
-Firebolt,A bolt of fire that inflicts 25 points of fire damage. Targets on fire take extra damage.,0,41,Destruction,Apprentice
-Freeze DR,A spike of ice that does 20 points of frost damage to Health and Stamina and slows the target for 15 seconds.,0,30,Destruction,Apprentice
-Ice Spike,A spike of ice that inflicts 25 points of ice damage to Health and Stamina.,0,48,Destruction,Apprentice
-Ignite DR,A blast of flame that sets targets of fire doing 4 damage per second for 15 seconds.,0,30,Destruction,Apprentice
-Lightning Bolt,A bolt of lightning that inflicts 25 points of shock damage to Health and half as much to Magicka.,0,51,Destruction,Apprentice
-Fire Rune,Cast on a nearby surface it explodes for 50 points of damage when enemies come near. Affected targets take extra damage.,0,234,Destruction,Apprentice
-Frost Rune,Cast on a nearby surface it explodes for 50 points of damage to Health and Stamina when enemies come near. Movement speed is reduced for affected targets.,0,293,Destruction,Apprentice
-Lightning Rune,Cast on a nearby surface it explodes for 50 points of damage to Health and half as much to Magicka when enemies come near.,0,323,Destruction,Apprentice
-Chain Lightning,A lighting bolt inflicting 40 points of damage to Health and half as much to Magicka then leaps to a new target. If the character has learned Augmented Shock 2/2 the lightning jumps on one additional target and does 60 damage. Caution! Friendly-fire is possible.,0,156,Destruction,Adept
-Fireball,A fireball which explodes on impact for 40 points of damage in a 15-foot radius. Targets on fire take extra damage. If the character has learned Augmented Flames 2/2 the radius of the fire explosion is increased by 5 and damage increases to 60 points. Does harm Followers but not Dragonborn.,0,133,Destruction,Adept
-Ice Storm,A freezing whirlwind that does 40 points of damage per second to Health and Stamina. The whirlwind radius is increased if the character has Augmented Frost 2/2. Spell range is smaller if cast with Destruction Dual Casting. Does harm Followers but not Dragonborn.,0,144,Destruction,Adept
-Flame Cloak,For 60 seconds opponents in melee range take 8 points of damage per second. Targets on fire take extra damage. Does not harm Followers. Does harm neutral NPCs like town guards.,0,289,Destruction,Adept
-Frost Cloak,For 60 seconds opponents in melee range take 8 points of damage per second to Health and Stamina. Does not harm Followers. Does harm neutral NPCs like town guards.,0,316,Destruction,Adept
-Lightning Cloak,For 60 seconds nearby opponents take 8 points of damage per second to Health and half as much to Magicka. Does not harm Followers. Does harm neutral NPCs like town guards.,0,370,Destruction,Adept
-Whirlwind Cloak DR,For 60 seconds opponents in melee range have a chance of being flung away.,0,338,Destruction,Adept
-Icy Spear,A spear of ice that does 60 (90) points of frost damage to Health and Stamina.,0,320,Destruction,Expert
-Incinerate,A blast of fire that does 60 (90) points of fire damage. Targets on fire take extra damage.,0,298,Destruction,Expert
-Thunderbolt,A thunderbolt that does 60 (90) points of shock damage to Health and half that to Magicka.,0,343,Destruction,Expert
-Wall of Flames,Sprayed on the ground it creates a wall of fire that does 50 points of fire damage per second. Does not harm Followers or Dragonborn.,0,118 per second,Destruction,Expert
-Wall of Frost,Sprayed on the ground it creates a wall of frost that does 50 points of frost damage per second. Does not harm Followers or Dragonborn.,0,137 per second,Destruction,Expert
-Wall of Storms,Sprayed on the ground it creates a wall of lightning that does 50 points of shock damage per second. Does not harm Followers or Dragonborn.,0,145 per second,Destruction,Expert
-Blizzard,Creates a blizzard that surrounds the caster. Targets take 20 point of frost damage every second for 10 seconds plus stamina damage.,0,656,Destruction,Master
-Fire Storm,A 100-point fiery explosion centered on the caster. The closer a target is the more damage they take.,0,846,Destruction,Master
-Lightning Storm,Fires a continuous stream of lightning. Target takes 75 points of shock damage per second to Health and half that to Magicka.,0,138 per second,Destruction,Master
-Healing,Heals the caster 10 points per second. One of the two basic spells.,0,12 per second,Restoration,Novice
-Lesser Ward,Increases armor rating by 40 points and negates up to 40 points of spell damage or effects.,0,34 per second,Restoration,Novice
-Fast Healing,Heals the caster 50 points.,0,73,Restoration,Apprentice
-Healing Hands,Heals the target 10 points per second but not undead atronachs or machines.,0,25 per second,Restoration,Apprentice
-Necromantic Healing DG,Heals the undead target 10 points per second but not the living atronachs or machines,0,37,Restoration,Apprentice
-Steadfast Ward,Increases armor rating by 60 points and negates up to 60 points of spell damage or effects.,0,58 per second,Restoration,Apprentice
-Sun Fire DG,Ball of sunlight that does 25 points of damage to undead,0,24,Restoration,Apprentice
-Turn Lesser Undead,Undead up to level 6 flee for 30s.,0,84,Restoration,Apprentice
-Close Wounds,Heals the caster 100 points.,0,126,Restoration,Adept
-Greater Ward,Increases armor rating by 80 points and negates up to 80 points of spell damage or effects.,0,86 per second,Restoration,Adept
-Heal Other,Heals the target 75 points. Does not affect undead atronachs or machines.,0,80,Restoration,Adept
-Heal Undead DG,Heals the undead target 75 points but not the living atronachs or machines,0,115,Restoration,Adept
-Poison Rune DR,Targets that fail to resist take 3 points of poison damage per second for 30 seconds.,0,146,Restoration,Adept
-Repel Lesser Undead,All affected undead up to level 8 flee for 30s.,0,115,Restoration,Adept
-Stendarr's Aura DG,For 60 seconds undead in melee range take 10 points sun damage per second,0,248,Restoration,Adept
-Turn Undead,Undead up to level 13 flee for 30s.,0,168,Restoration,Adept
-Vampire's Bane DG,Sunlight explosion that does 40 points of damage in a 15-foot radius to undead,0,72,Restoration,Adept
-Circle of Protection,Undead up to level 20 entering the circle will flee.,0,171,Restoration,Expert
-Grand Healing,Heals everyone close to the caster 200 points. Does not affect atronachs machines or undead.,0,254,Restoration,Expert
-Repel Undead,All affected undead up to level 16 flee for 30s.,0,353,Restoration,Expert
-Turn Greater Undead,Undead up to level 21 flee for 30s.,0,267,Restoration,Expert
-Bane of the Undead,Sets undead up to level 44 on fire and makes them flee for 30s.,0,988,Restoration,Master
-Guardian Circle,Undead up to level 35 entering the circle will flee. Caster heals 20 health per second inside it.,0,716,Restoration,Master
-Bound Dagger DR,Creates a magic dagger for 120 seconds. Sheathe it to dispel.,0,32,Conjuration,Novice
-Bound Sword,Creates a magic sword for 120 seconds. Sheathe it to dispel.,0,93,Conjuration,Novice
-Conjure Familiar,Summons a Familiar for 60 seconds wherever the caster is pointing.,0,107,Conjuration,Novice
-Raise Zombie,Reanimate a weak dead body to fight for the player for 60 seconds.,0,103,Conjuration,Novice
-Summon Unbound Dremora,Summons an unbound Dremora.,0,100,Conjuration,Novice
-Bound Battleaxe,Creates a magic battle axe for 120 seconds. Sheathe it to dispel.,0,169,Conjuration,Apprentice
-Conjure Boneman DG,Summons a Boneman archer for 60 seconds wherever the caster is pointing.,0,129,Conjuration,Apprentice
-Conjure Flame Atronach,Summons a Flame Atronach for 60 seconds wherever the caster is pointing.,0,150,Conjuration,Apprentice
-Flaming Familiar,Summons a Flaming Familiar which will charge into battle and explode.,0,57,Conjuration,Apprentice
-Reanimate Corpse,Reanimate a more powerful dead body to fight for the player for 60 seconds.,0,144,Conjuration,Apprentice
-Soul Trap,If a target dies within 60 seconds fills a soul gem.,0,107,Conjuration,Apprentice
-Spectral Arrow (Bound Bow),Fires a Spectral Arrow at the target doing 30 points of damage and staggering the target (shot from Bound Bow but can be obtained alone with console commands).,0,0,Conjuration,Apprentice
-Summon Arniel's Shade,Summons the Shade of Arniel Gane for 60 seconds wherever the caster is pointing.,0,71,Conjuration,Apprentice
-Summon Arvak DG,Summons the horse Arvak wherever the caster is pointing.,0,136,Conjuration,Apprentice
-Banish Daedra,Weaker summoned daedra are sent back to Oblivion.,0,196,Conjuration,Adept
-Bound Bow,Creates a magic bow for 120 seconds. Sheathe it to dispel.,0,207,Conjuration,Adept
-Conjure Ash Spawn DR,Summons an Ash Spawn for 60 seconds wherever the caster is pointing:.,0,186,Conjuration,Adept
-Conjure Frost Atronach,Summons a Frost Atronach for 60 seconds wherever the caster is pointing.,0,215,Conjuration,Adept
-Conjure Mistman DG,Summons a Mistman from the Soul Cairn for 60 seconds wherever the caster is pointing.,0,193,Conjuration,Adept
-Conjure Seeker DR,Summons a Seeker for 60 seconds wherever the caster is pointing.,0,157,Conjuration,Adept
-Revenant,Reanimate a powerful dead body to fight for the player for 60 seconds.,0,183,Conjuration,Adept
-Conjure Ash Guardian DR,Creates an Ash Guardian that guards that location until destroyed. Consumes a heart stone from your inventory without which it will be hostile.,0,207,Conjuration,Expert
-Command Daedra,Powerful summoned and raised creatures are put under the player's control.,0,243,Conjuration,Expert
-Conjure Dremora Lord,Summons a Dremora Lord for 60 seconds.,0,358,Conjuration,Expert
-Conjure Wrathman DG,Summons a Wrathman from the Soul Cairn for 60 seconds wherever the caster is pointing.,0,301,Conjuration,Expert
-Conjure Storm Atronach,Summons a Storm Atronach for 60 seconds wherever the caster is pointing.,0,322,Conjuration,Expert
-Dread Zombie,Reanimate a very powerful dead body to fight for the player for 60 seconds.,0,302,Conjuration,Expert
-Expel Daedra,Powerful summoned daedra creatures are sent back to Oblivion.,0,215,Conjuration,Expert
-Dead Thrall,Reanimate a dead body permanently to fight for the player.,0,1000,Conjuration,Master
-Flame Thrall,Summons a Flame Atronach permanently.,0,900,Conjuration,Master
-Frost Thrall,Summons a Frost Atronach permanently.,0,1100,Conjuration,Master
-Storm Thrall,Summons a Storm Atronach permanently.,0,1200,Conjuration,Master
-Candlelight,Creates a hovering light that lasts for 60 seconds.,0,21,Alteration,Novice
-Equilibrium,Convert health into magicka at a rate of 25 points per second. Caster can be killed by this effect.,0,0 (25 health per second),Alteration,Novice
-Oakflesh,Improves the caster's armor rating by 40 points for 60 seconds.,0,103,Alteration,Novice
-Magelight,Ball of light that lasts 60 seconds and sticks where it strikes.,0,84,Alteration,Apprentice
-Stoneflesh,Improves the caster's armor rating by 60 points for 60 seconds.,0,194,Alteration,Apprentice
-Ash Shell DR,Targets that fail to resist are immobilized in hardened ash for 30 seconds.,0,149 per second,Alteration,Adept
-Detect Life,Nearby living creatures (but not undead machines or daedra) can be seen through walls.,0,100 per second,Alteration,Adept
-Ironflesh,Improves the caster's armor rating by 80 points for 60 seconds.,0,266,Alteration,Adept
-Telekinesis,Can pull an object to you from distance. Add it to your inventory or throw it.,0,170 per second,Alteration,Adept
-Transmute,Transmute one piece of unrefined Iron Ore to Silver or Silver Ore to Gold if the caster is carrying any.,0,100,Alteration,Adept
-Waterbreathing,Can breathe under water for 60 seconds.,0,222,Alteration,Adept
-Ash Rune DR,Cast on a nearby surface it explodes when enemies are nearby immobilizing them in hardened ash for 30 seconds.,0,248,Alteration,Expert
-Detect Dead,Nearby dead can be seen through walls.,0,148 per second,Alteration,Expert
-Ebonyflesh,Improves the caster's armor rating by 100 points for 60 seconds.,0,341,Alteration,Expert
-Paralyze,Targets that fail to resist are paralyzed for 10 seconds.,0,450,Alteration,Expert
-Dragonhide,Caster ignores 80% of all physical damage for 30 seconds.,0,837,Alteration,Master
-Mass Paralysis,All targets in the area that fail to resist are paralyzed for 15 seconds.,0,937,Alteration,Master
+Chain Lightning,A lighting bolt inflicting 40 points of damage to Health and half as much to Magicka then leaps to a new target. If the character has learned Augmented Shock 2/2 the lightning jumps on one additional target and does 60 damage. Caution! Friendly-fire is possible.,300,156,Destruction,Adept
+Fireball,A fireball which explodes on impact for 40 points of damage in a 15-foot radius. Targets on fire take extra damage. If the character has learned Augmented Flames 2/2 the radius of the fire explosion is increased by 5 and damage increases to 60 points. Does harm Followers but not Dragonborn.,300,133,Destruction,Adept
+Ice Storm,A freezing whirlwind that does 40 points of damage per second to Health and Stamina. The whirlwind radius is increased if the character has Augmented Frost 2/2. Spell range is smaller if cast with Destruction Dual Casting. Does harm Followers but not Dragonborn.,300,144,Destruction,Adept
+Flame Cloak,For 60 seconds opponents in melee range take 8 points of damage per second. Targets on fire take extra damage. Does not harm Followers. Does harm neutral NPCs like town guards.,300,289,Destruction,Adept
+Frost Cloak,For 60 seconds opponents in melee range take 8 points of damage per second to Health and Stamina. Does not harm Followers. Does harm neutral NPCs like town guards.,300,316,Destruction,Adept
+Lightning Cloak,For 60 seconds nearby opponents take 8 points of damage per second to Health and half as much to Magicka. Does not harm Followers. Does harm neutral NPCs like town guards.,300,370,Destruction,Adept
+Whirlwind Cloak DR,For 60 seconds opponents in melee range have a chance of being flung away.,300,338,Destruction,Adept
+Close Wounds,Heals the caster 100 points.,300,126,Restoration,Adept
+Greater Ward,Increases armor rating by 80 points and negates up to 80 points of spell damage or effects.,300,86 per second,Restoration,Adept
+Heal Other,Heals the target 75 points. Does not affect undead atronachs or machines.,300,80,Restoration,Adept
+Heal Undead DG,Heals the undead target 75 points but not the living atronachs or machines,300,115,Restoration,Adept
+Poison Rune DR,Targets that fail to resist take 3 points of poison damage per second for 30 seconds.,300,146,Restoration,Adept
+Repel Lesser Undead,All affected undead up to level 8 flee for 30s.,300,115,Restoration,Adept
+Stendarr's Aura DG,For 60 seconds undead in melee range take 10 points sun damage per second,300,248,Restoration,Adept
+Turn Undead,Undead up to level 13 flee for 30s.,300,168,Restoration,Adept
+Vampire's Bane DG,Sunlight explosion that does 40 points of damage in a 15-foot radius to undead,300,72,Restoration,Adept
+Banish Daedra,Weaker summoned daedra are sent back to Oblivion.,300,196,Conjuration,Adept
+Bound Bow,Creates a magic bow for 120 seconds. Sheathe it to dispel.,300,207,Conjuration,Adept
+Conjure Ash Spawn DR,Summons an Ash Spawn for 60 seconds wherever the caster is pointing:.,300,186,Conjuration,Adept
+Conjure Frost Atronach,Summons a Frost Atronach for 60 seconds wherever the caster is pointing.,300,215,Conjuration,Adept
+Conjure Mistman DG,Summons a Mistman from the Soul Cairn for 60 seconds wherever the caster is pointing.,300,193,Conjuration,Adept
+Conjure Seeker DR,Summons a Seeker for 60 seconds wherever the caster is pointing.,300,157,Conjuration,Adept
+Revenant,Reanimate a powerful dead body to fight for the player for 60 seconds.,300,183,Conjuration,Adept
+Ash Shell DR,Targets that fail to resist are immobilized in hardened ash for 30 seconds.,300,149 per second,Alteration,Adept
+Detect Life,Nearby living creatures (but not undead machines or daedra) can be seen through walls.,300,100 per second,Alteration,Adept
+Ironflesh,Improves the caster's armor rating by 80 points for 60 seconds.,300,266,Alteration,Adept
+Telekinesis,Can pull an object to you from distance. Add it to your inventory or throw it.,300,170 per second,Alteration,Adept
+Transmute,Transmute one piece of unrefined Iron Ore to Silver or Silver Ore to Gold if the caster is carrying any.,300,100,Alteration,Adept
+Waterbreathing,Can breathe under water for 60 seconds.,300,222,Alteration,Adept
+Firebolt,A bolt of fire that inflicts 25 points of fire damage. Targets on fire take extra damage.,200,41,Destruction,Apprentice
+Freeze DR,A spike of ice that does 20 points of frost damage to Health and Stamina and slows the target for 15 seconds.,200,30,Destruction,Apprentice
+Ice Spike,A spike of ice that inflicts 25 points of ice damage to Health and Stamina.,200,48,Destruction,Apprentice
+Ignite DR,A blast of flame that sets targets of fire doing 4 damage per second for 15 seconds.,200,30,Destruction,Apprentice
+Lightning Bolt,A bolt of lightning that inflicts 25 points of shock damage to Health and half as much to Magicka.,200,51,Destruction,Apprentice
+Fire Rune,Cast on a nearby surface it explodes for 50 points of damage when enemies come near. Affected targets take extra damage.,200,234,Destruction,Apprentice
+Frost Rune,Cast on a nearby surface it explodes for 50 points of damage to Health and Stamina when enemies come near. Movement speed is reduced for affected targets.,200,293,Destruction,Apprentice
+Lightning Rune,Cast on a nearby surface it explodes for 50 points of damage to Health and half as much to Magicka when enemies come near.,200,323,Destruction,Apprentice
+Fast Healing,Heals the caster 50 points.,200,73,Restoration,Apprentice
+Healing Hands,Heals the target 10 points per second but not undead atronachs or machines.,200,25 per second,Restoration,Apprentice
+Necromantic Healing DG,Heals the undead target 10 points per second but not the living atronachs or machines,200,37,Restoration,Apprentice
+Steadfast Ward,Increases armor rating by 60 points and negates up to 60 points of spell damage or effects.,200,58 per second,Restoration,Apprentice
+Sun Fire DG,Ball of sunlight that does 25 points of damage to undead,200,24,Restoration,Apprentice
+Turn Lesser Undead,Undead up to level 6 flee for 30s.,200,84,Restoration,Apprentice
+Bound Battleaxe,Creates a magic battle axe for 120 seconds. Sheathe it to dispel.,200,169,Conjuration,Apprentice
+Conjure Boneman DG,Summons a Boneman archer for 60 seconds wherever the caster is pointing.,200,129,Conjuration,Apprentice
+Conjure Flame Atronach,Summons a Flame Atronach for 60 seconds wherever the caster is pointing.,200,150,Conjuration,Apprentice
+Flaming Familiar,Summons a Flaming Familiar which will charge into battle and explode.,200,57,Conjuration,Apprentice
+Reanimate Corpse,Reanimate a more powerful dead body to fight for the player for 60 seconds.,200,144,Conjuration,Apprentice
+Soul Trap,If a target dies within 60 seconds fills a soul gem.,200,107,Conjuration,Apprentice
+Spectral Arrow (Bound Bow),Fires a Spectral Arrow at the target doing 30 points of damage and staggering the target (shot from Bound Bow but can be obtained alone with console commands).,200,0,Conjuration,Apprentice
+Summon Arniel's Shade,Summons the Shade of Arniel Gane for 60 seconds wherever the caster is pointing.,200,71,Conjuration,Apprentice
+Summon Arvak DG,Summons the horse Arvak wherever the caster is pointing.,200,136,Conjuration,Apprentice
+Magelight,Ball of light that lasts 60 seconds and sticks where it strikes.,200,84,Alteration,Apprentice
+Stoneflesh,Improves the caster's armor rating by 60 points for 60 seconds.,200,194,Alteration,Apprentice
+Icy Spear,A spear of ice that does 60 (90) points of frost damage to Health and Stamina.,400,320,Destruction,Expert
+Incinerate,A blast of fire that does 60 (90) points of fire damage. Targets on fire take extra damage.,400,298,Destruction,Expert
+Thunderbolt,A thunderbolt that does 60 (90) points of shock damage to Health and half that to Magicka.,400,343,Destruction,Expert
+Wall of Flames,Sprayed on the ground it creates a wall of fire that does 50 points of fire damage per second. Does not harm Followers or Dragonborn.,400,118 per second,Destruction,Expert
+Wall of Frost,Sprayed on the ground it creates a wall of frost that does 50 points of frost damage per second. Does not harm Followers or Dragonborn.,400,137 per second,Destruction,Expert
+Wall of Storms,Sprayed on the ground it creates a wall of lightning that does 50 points of shock damage per second. Does not harm Followers or Dragonborn.,400,145 per second,Destruction,Expert
+Circle of Protection,Undead up to level 20 entering the circle will flee.,400,171,Restoration,Expert
+Grand Healing,Heals everyone close to the caster 200 points. Does not affect atronachs machines or undead.,400,254,Restoration,Expert
+Repel Undead,All affected undead up to level 16 flee for 30s.,400,353,Restoration,Expert
+Turn Greater Undead,Undead up to level 21 flee for 30s.,400,267,Restoration,Expert
+Conjure Ash Guardian DR,Creates an Ash Guardian that guards that location until destroyed. Consumes a heart stone from your inventory without which it will be hostile.,400,207,Conjuration,Expert
+Command Daedra,Powerful summoned and raised creatures are put under the player's control.,400,243,Conjuration,Expert
+Conjure Dremora Lord,Summons a Dremora Lord for 60 seconds.,400,358,Conjuration,Expert
+Conjure Wrathman DG,Summons a Wrathman from the Soul Cairn for 60 seconds wherever the caster is pointing.,400,301,Conjuration,Expert
+Conjure Storm Atronach,Summons a Storm Atronach for 60 seconds wherever the caster is pointing.,400,322,Conjuration,Expert
+Dread Zombie,Reanimate a very powerful dead body to fight for the player for 60 seconds.,400,302,Conjuration,Expert
+Expel Daedra,Powerful summoned daedra creatures are sent back to Oblivion.,400,215,Conjuration,Expert
+Ash Rune DR,Cast on a nearby surface it explodes when enemies are nearby immobilizing them in hardened ash for 30 seconds.,400,248,Alteration,Expert
+Detect Dead,Nearby dead can be seen through walls.,400,148 per second,Alteration,Expert
+Ebonyflesh,Improves the caster's armor rating by 100 points for 60 seconds.,400,341,Alteration,Expert
+Paralyze,Targets that fail to resist are paralyzed for 10 seconds.,400,450,Alteration,Expert
+Blizzard,Creates a blizzard that surrounds the caster. Targets take 20 point of frost damage every second for 10 seconds plus stamina damage.,500,656,Destruction,Master
+Fire Storm,A 100-point fiery explosion centered on the caster. The closer a target is the more damage they take.,500,846,Destruction,Master
+Lightning Storm,Fires a continuous stream of lightning. Target takes 75 points of shock damage per second to Health and half that to Magicka.,500,138 per second,Destruction,Master
+Bane of the Undead,Sets undead up to level 44 on fire and makes them flee for 30s.,500,988,Restoration,Master
+Guardian Circle,Undead up to level 35 entering the circle will flee. Caster heals 20 health per second inside it.,500,716,Restoration,Master
+Dead Thrall,Reanimate a dead body permanently to fight for the player.,500,1000,Conjuration,Master
+Flame Thrall,Summons a Flame Atronach permanently.,500,900,Conjuration,Master
+Frost Thrall,Summons a Frost Atronach permanently.,500,1100,Conjuration,Master
+Storm Thrall,Summons a Storm Atronach permanently.,500,1200,Conjuration,Master
+Dragonhide,Caster ignores 80% of all physical damage for 30 seconds.,500,837,Alteration,Master
+Mass Paralysis,All targets in the area that fail to resist are paralyzed for 15 seconds.,500,937,Alteration,Master
+Flames,A gout of fire inflicting a base damage of 8 points of fire damage per second. Targets on fire take extra damage. One of the two basic spells.,100,14 per second,Destruction,Novice
+Frostbite,A blast of cold inflicting a base damage of 8 points of frost damage per second to Health and Stamina.,100,16 per second,Destruction,Novice
+Sparks,Lightning which inflicts a base damage of 8 points of shock damage per second to Health and Magicka.,100,19 per second,Destruction,Novice
+Arniel's Convection,Burns the target 1 point per second. Targets on fire take extra damage.,100,0 per second,Destruction,Novice
+Vampiric Drain,Absorb 2 3 4 or 5 points (depends upon the level of vampirism) of health from the target.,100,6 10 13 or 17 per second (depends upon the level of vampirism),Destruction,Novice
+Healing,Heals the caster 10 points per second. One of the two basic spells.,100,12 per second,Restoration,Novice
+Lesser Ward,Increases armor rating by 40 points and negates up to 40 points of spell damage or effects.,100,34 per second,Restoration,Novice
+Bound Dagger DR,Creates a magic dagger for 120 seconds. Sheathe it to dispel.,100,32,Conjuration,Novice
+Bound Sword,Creates a magic sword for 120 seconds. Sheathe it to dispel.,100,93,Conjuration,Novice
+Conjure Familiar,Summons a Familiar for 60 seconds wherever the caster is pointing.,100,107,Conjuration,Novice
+Raise Zombie,Reanimate a weak dead body to fight for the player for 60 seconds.,100,103,Conjuration,Novice
+Summon Unbound Dremora,Summons an unbound Dremora.,100,100,Conjuration,Novice
+Candlelight,Creates a hovering light that lasts for 60 seconds.,100,21,Alteration,Novice
+Equilibrium,Convert health into magicka at a rate of 25 points per second. Caster can be killed by this effect.,100,0 (25 health per second),Alteration,Novice
+Oakflesh,Improves the caster's armor rating by 40 points for 60 seconds.,100,103,Alteration,Novice
