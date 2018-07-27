@@ -34,4 +34,5 @@ module.exports = {
   Spell,
   Order,
   Review,
+  SpellOrders,
 }

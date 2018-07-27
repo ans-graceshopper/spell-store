@@ -43,12 +43,17 @@ router.get('/', (req, res, next) => {
 
 // add a spell to cart PUT route edits order Order.addSpell() ?
 router.put('/', async (req, res, next) => {
+  // console.log(`\nREQUEST BODY:`, req.body)
   try {
-    const spell = await Spell.findById(req.body.id)
+    const spell = await Spell.findOne({
+      where: {id: req.body.id},
+      include: [{model: Order, through: SpellOrders}],
+    })
     if (req.user) {
       await req.cart.addSpell(spell)
     } else {
-      req.cart = [...req.cart, spell]
+      // console.log(`\n SPELL FROM DATABASE:`, spell)
+      req.cart.push(spell)
     }
     res.json(req.cart)
   } catch (err) {
