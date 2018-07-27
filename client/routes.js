@@ -6,6 +6,7 @@ import {
   Login,
   Signup,
   UserHome,
+  UserOrders,
   AllSpells,
   SpellDetail,
   AddSpell,
@@ -37,12 +38,6 @@ class Routes extends Component {
         <Route exact path="/spells/:id" component={SpellDetail} />
         <Route path="/spells" component={AllSpells} />
 
-        {/* USER ROUTES */}
-        {/* <Route exact path="/users/add" component={AddUser} />
-        <Route exact path="/users/:id/edit" component={EditUser} />
-        <Route exact path="/users/:id" component={UserDetail} />
-        <Route path="/users" component={AllUsers} /> */}
-
         {/* CART ROUTES */}
         <Route path="/cart" component={Cart} />
 
@@ -50,10 +45,11 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route exact path="/orders" component={UserOrders} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        {/* <Route component={Login} /> */}
+        <Route component={Login} />
       </Switch>
     )
   }
