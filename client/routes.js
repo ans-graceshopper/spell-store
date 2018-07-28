@@ -11,6 +11,7 @@ import {
   AddSpell,
   EditSpell,
   Cart,
+  AllOrders,
 } from './components'
 import {me} from './store'
 
@@ -23,7 +24,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    const {isLoggedIn, isAdmin} = this.props
 
     return (
       <div className="main container">
@@ -38,12 +39,6 @@ class Routes extends Component {
           <Route exact path="/spells/:id" component={SpellDetail} />
           <Route path="/spells" component={AllSpells} />
 
-          {/* USER ROUTES */}
-          {/* <Route exact path="/users/add" component={AddUser} />
-        <Route exact path="/users/:id/edit" component={EditUser} />
-        <Route exact path="/users/:id" component={UserDetail} />
-        <Route path="/users" component={AllUsers} /> */}
-
           {/* CART ROUTES */}
           <Route path="/cart" component={Cart} />
 
@@ -53,8 +48,21 @@ class Routes extends Component {
               <Route path="/home" component={UserHome} />
             </Switch>
           )}
+
+          {/* ADMIN ROUTES */}
+          {isAdmin && (
+            <Switch>
+              <Route path="/admin/orders" component={AllOrders} />
+              {/* USER MANAGEMENT ROUTES */}
+              {/* <Route exact path="/admin/users/add" component={AddUser} />
+              <Route exact path="/admin/users/:id/edit" component={EditUser} />
+              <Route exact path="/admin/users/:id" component={UserDetail} />
+              <Route path="/admin/users" component={AllUsers} /> */}
+            </Switch>
+          )}
+
           {/* Displays our Login component as a fallback */}
-          {/* <Route component={Login} /> */}
+          <Route component={Login} />
         </Switch>
       </div>
     )
@@ -69,6 +77,7 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
+    isAdmin: state.user.isAdmin,
   }
 }
 
