@@ -28,7 +28,7 @@ class Cart extends Component {
       <div>
         <h2>My Cart</h2>
         {cart ? (
-          cart.map(spell => <LineItem key={spell.id} spell={spell} />)
+          cart.spells.map(spell => <LineItem key={spell.id} spell={spell} />)
         ) : (
           <h3>Your cart is empty</h3>
         )}

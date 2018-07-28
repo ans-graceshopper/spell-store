@@ -2,16 +2,29 @@ const router = require('express').Router()
 const {Order, Spell, SpellOrders} = require('../db/models')
 module.exports = router
 
-// cart goal for both logged in and sessions
-// req.cart = {
-//   order: {
-//     isCart: true,
-//     status: 'open',
-//   },
-//   spells: [],
-// }
+/*
+  cart goal for both logged in and sessions
+  req.cart = {
+    order: {
+      isCart: true,
+      status: 'open',
+    },
+    spells: [],
+  }
+ */
 
-// middleware to check if logged in ????
+/*
+  middleware to:
+
+  initialize req.session.cart to the above format for ALL users
+
+  if user is logged in, i.e. exists in the database, cart.order is initialized to an Order associated with them where isCart: true. if there is an already existing order associated with them, it is found instead of created and cart is initialized to it.
+
+  if user is not logged in, i.e. does not exist in the database, no interaction with the database occurs. cart.order is initialized to an object with the same structure as one an existing order WOULD have, so we can interact with it as we would a real Order, and pass it to Order.create() with no issues.
+
+  for both cases, req.cart points to req.session.cart, for ease of use.
+*/
+
 router.use('/', async (req, res, next) => {
   try {
     if (req.user) {
@@ -116,9 +129,11 @@ router.delete('/:id', async (req, res, next) => {
       const currentSpell = req.cart.spells.find(
         spell => spell.id === +req.params.id
       )
-      await req.cart.removeSpell(currentSpell)
+      await req.cart.order.removeSpell(currentSpell)
     } else {
-      req.cart = req.cart.filter(spell => spell.id !== +req.params.id)
+      req.cart.spells = req.cart.spells.filter(
+        spell => spell.id !== +req.params.id
+      )
     }
   } catch (err) {
     next(err)
