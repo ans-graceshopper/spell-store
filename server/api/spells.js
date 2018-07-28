@@ -3,12 +3,6 @@ const {Spell, Review} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
-  if (req.session.name) {
-    req.session.name.push('amy')
-  } else {
-    req.session.name = []
-  }
-  console.log(req.session.name)
   try {
     const spells = await Spell.findAll({include: {model: Review}})
     res.json(spells)
