@@ -5,26 +5,78 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div className="container">
-      <h1>Spell Binder</h1>
+      <a className="navbar-brand">
+        <img
+          src="/spellbook.png"
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+          alt=""
+        />
+        SpellBinder
+      </a>
       {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            {/* The navbar will show these links after you log in */}
+            <Link className="nav-link" to="/home">
+              Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/spells">
+              Shop
+            </Link>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#" onClick={handleClick}>
+              Logout
+            </a>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/cart">
+              Cart
+            </Link>
+          </li>
+        </ul>
       ) : (
-        <div>
+        <ul className="navbar-nav ml-auto">
           {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </div>
+          <li className="nav-item">
+            <Link className="nav-link" to="/spells">
+              Shop
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/login">
+              Login
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/signup">
+              Sign Up
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/cart">
+              Cart
+            </Link>
+          </li>
+        </ul>
       )}
-      <Link to="/spells">Spells</Link>
-      <Link to="/cart">Cart</Link>
+      {/* <form className="form-inline my-2 my-lg-0">
+        <input
+          className="form-control mr-sm-2"
+          type="search"
+          placeholder="I don't work yet :("
+          aria-label="Search"
+        />
+        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
+          Search
+        </button>
+      </form> */}
     </div>
   </nav>
 )
