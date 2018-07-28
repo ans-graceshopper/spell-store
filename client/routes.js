@@ -11,19 +11,17 @@ import {
   AddSpell,
   EditSpell,
   Cart,
+  AllOrders,
 } from './components'
 import {me} from './store'
 
-/**
- * COMPONENT
- */
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    const {isLoggedIn, isAdmin} = this.props
 
     return (
       <div className="main container">
@@ -33,28 +31,43 @@ class Routes extends Component {
           <Route path="/signup" component={Signup} />
 
           {/* SPELL ROUTES */}
-          <Route exact path="/spells/add" component={AddSpell} />
-          <Route exact path="/spells/:id/edit" component={EditSpell} />
           <Route exact path="/spells/:id" component={SpellDetail} />
-          <Route path="/spells" component={AllSpells} />
-
-          {/* USER ROUTES */}
-          {/* <Route exact path="/users/add" component={AddUser} />
-        <Route exact path="/users/:id/edit" component={EditUser} />
-        <Route exact path="/users/:id" component={UserDetail} />
-        <Route path="/users" component={AllUsers} /> */}
+          <Route exact path="/spells" component={AllSpells} />
 
           {/* CART ROUTES */}
           <Route path="/cart" component={Cart} />
 
+          {/* LOGGED IN USER ROUTES */}
           {isLoggedIn && (
             <Switch>
-              {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
+
+              {/* ADMIN ROUTES */}
+              {isAdmin && (
+                <Switch>
+                  {/* ORDER MANAGEMENT ROUTES */}
+                  <Route path="/admin/orders" component={AllOrders} />
+
+                  {/* SPELL MANAGEMENT ROUTES */}
+                  <Route exact path="/spells/add" component={AddSpell} />
+                  <Route exact path="/spells/:id/edit" component={EditSpell} />
+
+                  {/* USER MANAGEMENT ROUTES */}
+                  {/* <Route exact path="/admin/users/add" component={AddUser} />
+                  <Route
+                    exact
+                    path="/admin/users/:id/edit"
+                    component={EditUser}
+                  />
+                  <Route exact path="/admin/users/:id" component={UserDetail} />
+                  <Route path="/admin/users" component={AllUsers} /> */}
+                </Switch>
+              )}
             </Switch>
           )}
+
           {/* Displays our Login component as a fallback */}
-          {/* <Route component={Login} /> */}
+          <Route component={Login} />
         </Switch>
       </div>
     )
@@ -69,6 +82,7 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
+    isAdmin: state.user.isAdmin,
   }
 }
 
