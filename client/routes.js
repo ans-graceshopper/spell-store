@@ -15,9 +15,6 @@ import {
 } from './components'
 import {me} from './store'
 
-/**
- * COMPONENT
- */
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
@@ -34,30 +31,38 @@ class Routes extends Component {
           <Route path="/signup" component={Signup} />
 
           {/* SPELL ROUTES */}
-          <Route exact path="/spells/add" component={AddSpell} />
-          <Route exact path="/spells/:id/edit" component={EditSpell} />
           <Route exact path="/spells/:id" component={SpellDetail} />
-          <Route path="/spells" component={AllSpells} />
+          <Route exact path="/spells" component={AllSpells} />
 
           {/* CART ROUTES */}
           <Route path="/cart" component={Cart} />
 
+          {/* LOGGED IN USER ROUTES */}
           {isLoggedIn && (
             <Switch>
-              {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
-            </Switch>
-          )}
 
-          {/* ADMIN ROUTES */}
-          {isAdmin && (
-            <Switch>
-              <Route path="/admin/orders" component={AllOrders} />
-              {/* USER MANAGEMENT ROUTES */}
-              {/* <Route exact path="/admin/users/add" component={AddUser} />
-              <Route exact path="/admin/users/:id/edit" component={EditUser} />
-              <Route exact path="/admin/users/:id" component={UserDetail} />
-              <Route path="/admin/users" component={AllUsers} /> */}
+              {/* ADMIN ROUTES */}
+              {isAdmin && (
+                <Switch>
+                  {/* ORDER MANAGEMENT ROUTES */}
+                  <Route path="/admin/orders" component={AllOrders} />
+
+                  {/* SPELL MANAGEMENT ROUTES */}
+                  <Route exact path="/spells/add" component={AddSpell} />
+                  <Route exact path="/spells/:id/edit" component={EditSpell} />
+
+                  {/* USER MANAGEMENT ROUTES */}
+                  {/* <Route exact path="/admin/users/add" component={AddUser} />
+                  <Route
+                    exact
+                    path="/admin/users/:id/edit"
+                    component={EditUser}
+                  />
+                  <Route exact path="/admin/users/:id" component={UserDetail} />
+                  <Route path="/admin/users" component={AllUsers} /> */}
+                </Switch>
+              )}
             </Switch>
           )}
 

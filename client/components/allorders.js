@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-class AllOrders extends Component {
-  render() {
-    return <h1>Orders coming soon!</h1>
-  }
+const AllOrders = () => {
+  return <p>Orders coming soon!</p>
 }
 
-export default connect(null, null)(AllOrders)
+export default AllOrders
