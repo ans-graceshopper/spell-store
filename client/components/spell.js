@@ -9,18 +9,22 @@ const Spell = props => {
     <div className="card">
       <img className="card-img-top" src={spell.images[0]} />
       <div className="card-body">
-        <NavLink className="btn-default" to={`/spells/${spell.id}`}>
-          {spell.title}
-        </NavLink>
-        <h5>Price: {spell.price} gold</h5>
+        <h5 className="card-title">
+          <NavLink to={`/spells/${spell.id}`}>{spell.title}</NavLink>
+        </h5>
+        <p>{spell.price} gold</p>
         {user.isAdmin ? (
-          <NavLink to={`/spells/${spell.id}/edit`}>Edit</NavLink>
+          <NavLink className="btn btn-danger" to={`/spells/${spell.id}/edit`}>
+            Edit
+          </NavLink>
         ) : (
           <div />
         )}
+      </div>
+      <div className="card-footer">
         <button
           onClick={() => addSpellToCart(spell)}
-          className="btn-default"
+          className="btn btn-primary"
           type="button"
         >
           Add to Cart
