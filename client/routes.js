@@ -26,35 +26,37 @@ class Routes extends Component {
     const {isLoggedIn} = this.props
 
     return (
-      <Switch>
-        {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+      <div className="main container">
+        <Switch>
+          {/* Routes placed here are available to all visitors */}
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
 
-        {/* SPELL ROUTES */}
-        <Route exact path="/spells/add" component={AddSpell} />
-        <Route exact path="/spells/:id/edit" component={EditSpell} />
-        <Route exact path="/spells/:id" component={SpellDetail} />
-        <Route path="/spells" component={AllSpells} />
+          {/* SPELL ROUTES */}
+          <Route exact path="/spells/add" component={AddSpell} />
+          <Route exact path="/spells/:id/edit" component={EditSpell} />
+          <Route exact path="/spells/:id" component={SpellDetail} />
+          <Route path="/spells" component={AllSpells} />
 
-        {/* USER ROUTES */}
-        {/* <Route exact path="/users/add" component={AddUser} />
+          {/* USER ROUTES */}
+          {/* <Route exact path="/users/add" component={AddUser} />
         <Route exact path="/users/:id/edit" component={EditUser} />
         <Route exact path="/users/:id" component={UserDetail} />
         <Route path="/users" component={AllUsers} /> */}
 
-        {/* CART ROUTES */}
-        <Route path="/cart" component={Cart} />
+          {/* CART ROUTES */}
+          <Route path="/cart" component={Cart} />
 
-        {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-          </Switch>
-        )}
-        {/* Displays our Login component as a fallback */}
-        {/* <Route component={Login} /> */}
-      </Switch>
+          {isLoggedIn && (
+            <Switch>
+              {/* Routes placed here are only available after logging in */}
+              <Route path="/home" component={UserHome} />
+            </Switch>
+          )}
+          {/* Displays our Login component as a fallback */}
+          {/* <Route component={Login} /> */}
+        </Switch>
+      </div>
     )
   }
 }

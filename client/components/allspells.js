@@ -30,9 +30,9 @@ class AllSpells extends Component {
     const {user} = this.props
 
     return (
-      <div>
-        <div>
-          <div>
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-3">
             <div>
               {user.isAdmin ? (
                 <NavLink to="/spells/add">Add Spell</NavLink>
@@ -48,7 +48,7 @@ class AllSpells extends Component {
                   placeholder="Search"
                   aria-label="Search"
                 />
-                <h5>Categories</h5>
+                <h5 className="my-4">Categories</h5>
                 <button onClick={this.clearFilters}>View All</button>
                 <p>Magic School</p>
                 <select name="magicSchool" onChange={this.handleChange}>
@@ -68,7 +68,7 @@ class AllSpells extends Component {
             </div>
           </div>
 
-          <div>
+          <div className="col-lg-9">
             <SpellList
               handleClick={this.handleClick}
               spells={this.props.spells
