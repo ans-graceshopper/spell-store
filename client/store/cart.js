@@ -51,7 +51,7 @@ export const createCart = () => async dispatch => {
   }
 }
 
-const initialCart = []
+const initialCart = {order: {}, spells: []}
 
 const cartReducer = (cart = initialCart, action) => {
   switch (action.type) {
