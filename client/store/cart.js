@@ -51,19 +51,22 @@ export const createCart = () => async dispatch => {
   }
 }
 
-const initialCart = []
+const initialCart = {order: {}, spells: []}
 
 const cartReducer = (cart = initialCart, action) => {
   switch (action.type) {
     case GOT_CART: {
       return action.cart
     }
+
     case EDITED_CART: {
-      return cart.map(spell => {
+      const updatedSpells = cart.spells.map(spell => {
         if (spell.id === action.spell.id) return action.spell
         else return spell
       })
+      return {...cart, spells: updatedSpells}
     }
+
     default: {
       return cart
     }
