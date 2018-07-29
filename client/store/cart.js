@@ -29,7 +29,7 @@ export const addToCart = (spell, quantity) => async dispatch => {
 export const removeFromCart = spell => async dispatch => {
   try {
     await axios.delete(`/api/cart/${spell.id}`)
-    dispatch(removedFromCart(spell.id))
+    getCart()
   } catch (e) {
     console.error(e)
   }

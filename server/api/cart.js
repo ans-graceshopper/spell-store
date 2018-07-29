@@ -2,6 +2,7 @@ const router = require('express').Router()
 const {Order, Spell} = require('../db/models')
 module.exports = router
 
+// Session helper functions
 const createSessionCart = req => {
   req.session.cart = {
     order: {
@@ -49,28 +50,24 @@ router.put('/:spellId', async (req, res, next) => {
         createSessionCart(req)
       }
       const spells = req.session.cart.spells
-      let updatedSpells = spells.slice()
-      console.log('SPELLS BEFORE IN API SESSION', spells)
-
       // search for current spell in spells array
-      const foundSpell = spells.includes(spell.dataValues)
-      console.log('FOUND SPELL', foundSpell)
+      const foundSpell = spells.find(sp => sp.id === spell.dataValues.id)
       // if found, do a map and change the quantity
       if (foundSpell) {
-        updatedSpells = spells.map(sp => {
-          if (sp.id === req.params.spellId) {
+        req.session.cart.spells = spells.map(sp => {
+          if (sp.id === +req.params.spellId) {
             return {
               ...sp,
               spellorders: {
-                quantity: req.body.quantity,
-                price: sp.price,
+                quantity: +req.body.quantity,
+                price: spell.price,
               },
             }
           } else return sp
         })
       } else {
         // if not found, simply push to copy of spells array
-        updatedSpells.push({
+        req.session.cart.spells.push({
           ...spell.dataValues,
           spellorders: {
             quantity: req.body.quantity,
@@ -78,8 +75,6 @@ router.put('/:spellId', async (req, res, next) => {
           },
         })
       }
-      req.session.cart.spells = updatedSpells
-      console.log('SPELLS AFTER IN API SESSION', updatedSpells)
       res.json(req.session.cart)
     }
   } catch (err) {
@@ -87,7 +82,7 @@ router.put('/:spellId', async (req, res, next) => {
   }
 })
 
-// delete all quantities of spell from the cart at once
+// delete entire spell item from the cart
 router.delete('/:spellId', async (req, res, next) => {
   try {
     if (req.user) {
@@ -96,9 +91,11 @@ router.delete('/:spellId', async (req, res, next) => {
       await order.removeSpell(spell)
       res.json(order)
     } else {
-      req.cart.spells = req.cart.spells.filter(
-        spell => spell.id !== +req.params.id
+      const spells = req.session.cart.spells
+      req.session.cart.spells = spells.filter(
+        spell => spell.id !== +req.params.spellId
       )
+      res.json(req.session.cart)
     }
   } catch (err) {
     next(err)
