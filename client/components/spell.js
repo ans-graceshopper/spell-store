@@ -34,7 +34,7 @@ class Spell extends Component {
           <h5 className="card-title">
             <NavLink to={`/spells/${spell.id}`}>{spell.title}</NavLink>
           </h5>
-          <p>{spell.price} gold</p>
+          <p>${spell.price}</p>
           {user.isAdmin ? (
             <NavLink className="btn btn-danger" to={`/spells/${spell.id}/edit`}>
               Edit
