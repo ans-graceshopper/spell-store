@@ -34,7 +34,8 @@ router.use('/', async (req, res, next) => {
           isCart: true,
         },
       })
-      req.cart = order
+      req.cart = {}
+      req.cart.order = order
       req.cart.spells = await order.getSpells()
     } else {
       if (!req.session.cart) {
@@ -97,7 +98,10 @@ router.put('/:spellId', async (req, res, next) => {
       const updated = await cartSpell.update(req.body)
       res.json(updated)
     } else {
-      req.cart.spells = [...req.cart.spells, req.body]
+      req.cart.spells = req.cart.spells.map(spell => {
+        if (spell.id === req.body.id) return req.body
+        else return spell
+      })
       res.json(req.body)
     }
   } catch (err) {
