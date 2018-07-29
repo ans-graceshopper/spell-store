@@ -94,11 +94,13 @@ const createReviews = async () => {
     //const murray = await User.findById(2)
 
     const review1 = await Review.create({
+      title: 'Wow!',
       content: 'this spell is the best!',
       rating: 5,
     })
 
     const review2 = await Review.create({
+      title: 'OMG LAME!',
       content: 'this spell is so fake!! I would give it zero stars if I could!',
       rating: 1,
     })

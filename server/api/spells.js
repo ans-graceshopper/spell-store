@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Spell, Review} = require('../db/models')
+const {Spell, Review, User} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -24,8 +24,10 @@ router.get('/:id', async (req, res, next) => {
 
 router.get('/:id/reviews', async (req, res, next) => {
   try {
-    const spell = await Spell.findById(req.params.id)
-    const reviews = await spell.getReviews()
+    const reviews = await Review.findAll({
+      where: {spellId: req.params.id},
+      include: [User],
+    })
     res.json(reviews)
   } catch (err) {
     next(err)
