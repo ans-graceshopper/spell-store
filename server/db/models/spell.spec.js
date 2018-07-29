@@ -3,16 +3,21 @@
 const {expect} = require('chai')
 const db = require('../index')
 const Spell = db.model('spell')
+
 const spellData = {
   title: 'fake spell1',
   description: 'a fake spell',
+  inventory: 10,
   price: 99,
   magic_school: 'Alteration',
   skill_level: 'Expert',
   magicka_cost: '15 points',
 }
+
 let testSpell
 describe('Spell model', () => {
+  before(() => db.sync({force: true}))
+
   beforeEach(() => {
     testSpell = Spell.build(spellData)
   })
@@ -113,5 +118,13 @@ describe('Spell model', () => {
         }
       )
     })
+
+    // CAN'T FIGURE OUT RIGHT WAY TO TEST THIS METHOD
+    // it('checkout instance method correctly updates inventory to correct amount when purchased', () => {
+    //   return testSpell.save().then(savedSpell => {
+    //     savedSpell.checkout(2)
+    //     expect(savedSpell.inventory).to.equal(8)
+    //   })
+    // })
   })
 }) // end describe('User model')

@@ -23,17 +23,20 @@ const Spell = db.define('spell', {
     ],
   },
 
-  quantity: {
+  inventory: {
     type: Sequelize.INTEGER,
     allowNull: false,
     defaultValue: 0,
+    validate: {
+      min: 0,
+    },
   },
 
   price: {
     type: Sequelize.INTEGER,
-    // get() {
-    //   return this.getDataValue('price') / 100
-    // }, // TODO make price getter more robust
+    get() {
+      return this.getDataValue('price') / 100
+    }, // TODO make price getter more robust
   },
   // make own table for extensibility; in short term make enum
   magic_school: {
@@ -57,6 +60,18 @@ const Spell = db.define('spell', {
     type: Sequelize.STRING,
   },
 })
+
+// DOESN'T WORK BUT WE'LL NEED SOMETHING LIKE THIS
+// Spell.prototype.checkout = quantity => {
+//   return Spell.update(
+//     {
+//       inventory: this.inventory - quantity,
+//     },
+//     {
+//       where: {id: this.id},
+//     }
+//   )
+// }
 
 module.exports = Spell
 

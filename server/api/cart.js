@@ -1,143 +1,101 @@
 const router = require('express').Router()
-const {Order, Spell, SpellOrders} = require('../db/models')
+const {Order, Spell} = require('../db/models')
 module.exports = router
 
-/*
-  cart goal for both logged in and sessions
-  req.cart = {
+// Session helper functions
+const createSessionCart = req => {
+  req.session.cart = {
     order: {
       isCart: true,
       status: 'open',
     },
     spells: [],
+    sessionId: req.session.id,
   }
- */
-
-/*
-  middleware to:
-
-  initialize req.session.cart to the above format for ALL users
-
-  if user is logged in, i.e. exists in the database, cart.order is initialized to an Order associated with them where isCart: true. if there is an already existing order associated with them, it is found instead of created and cart is initialized to it.
-
-  if user is not logged in, i.e. does not exist in the database, no interaction with the database occurs. cart.order is initialized to an object with the same structure as one an existing order WOULD have, so we can interact with it as we would a real Order, and pass it to Order.create() with no issues.
-
-  for both cases, req.cart points to req.session.cart, for ease of use.
-*/
-
-router.use('/', async (req, res, next) => {
-  try {
-    if (req.user) {
-      const [order, created] = await Order.findOrCreate({
-        where: {
-          userId: req.user.id,
-          isCart: true,
-        },
-      })
-      req.cart = {}
-      req.cart.order = order
-      req.cart.spells = await order.getSpells()
-    } else {
-      if (!req.session.cart) {
-        req.session.cart = {
-          order: {
-            isCart: true,
-            status: 'open',
-          },
-          spells: [],
-          sessionId: req.session.id,
-        }
-      }
-      req.cart = req.session.cart
-    }
-    next()
-  } catch (err) {
-    next(err)
-  }
-})
+  return req.session.cart
+}
 
 // get cart for a user if logged in, or from session if guest
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    console.log('CART IN API ROUTE', req.cart)
-    res.json(req.cart)
-  } catch (err) {
-    next(err)
-  }
-})
-
-// add a spell to cart PUT route edits order Order.addSpell() ?
-router.put('/', async (req, res, next) => {
-  // console.log(`\nREQUEST BODY:`, req.body)
-  try {
-    const spell = await Spell.findOne({
-      where: {id: req.body.id},
-      include: [{model: Order, through: SpellOrders}],
-    })
     if (req.user) {
-      await req.cart.order.addSpell(spell)
+      const [order] = await Order.findOrCreateCart(req.user)
+      res.json(order)
     } else {
-      req.cart.spells.push(spell)
+      if (!req.session.cart) {
+        createSessionCart(req)
+      }
+      res.json(req.session.cart)
     }
-    res.json(req.cart)
   } catch (err) {
     next(err)
   }
 })
 
-// edit a spell that's in the cart aka change quantity
+// add or update a spell in cart
 router.put('/:spellId', async (req, res, next) => {
   try {
+    const spell = await Spell.findById(req.params.spellId)
     if (req.user) {
-      const cartSpell = await SpellOrders.findOne({
-        where: {
-          spellId: req.params.spellId,
-          orderId: req.cart.order.id,
+      const [order] = await Order.findOrCreateCart(req.user)
+      await order.addSpell(spell, {
+        through: {
+          quantity: req.body.quantity,
+          price: spell.price,
         },
       })
-      const updated = await cartSpell.update(req.body)
-      res.json(updated)
+      res.json(order)
     } else {
-      req.cart.spells = req.cart.spells.map(spell => {
-        if (spell.id === req.body.id) return req.body
-        else return spell
-      })
-      res.json(req.body)
+      if (!req.session.cart) {
+        createSessionCart(req)
+      }
+      const spells = req.session.cart.spells
+      // search for current spell in spells array
+      const foundSpell = spells.find(sp => sp.id === spell.dataValues.id)
+      // if found, do a map and change the quantity
+      if (foundSpell) {
+        req.session.cart.spells = spells.map(sp => {
+          if (sp.id === +req.params.spellId) {
+            return {
+              ...sp,
+              spellorders: {
+                quantity: +req.body.quantity,
+                price: spell.price,
+              },
+            }
+          } else return sp
+        })
+      } else {
+        // if not found, simply push to copy of spells array
+        req.session.cart.spells.push({
+          ...spell.dataValues,
+          spellorders: {
+            quantity: req.body.quantity,
+            price: spell.price,
+          },
+        })
+      }
+      res.json(req.session.cart)
     }
   } catch (err) {
     next(err)
   }
 })
 
-// add to cart POST route creates order tagged isCart
-// this method is intended to be called after user checks out, thus their cart must be archived
-// router.post('/', async (req, res, next) => {
-//   try {
-//     if (req.user) {
-//       const newOrder = await Order.create({isCart: true}) // make sure previous instance of Order model with isCart: true gets changed to false after new cart is initialized
-//       res.status(201).json(newOrder)
-//     } else {
-//       req.session.cart = []
-//       req.cart = req.session.cart
-//     }
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
-// delete a spell from the cart destroys a line item Order.removeSpell() ?
-// update to check if
-router.delete('/:id', async (req, res, next) => {
+// delete entire spell item from the cart
+router.delete('/:spellId', async (req, res, next) => {
   try {
     if (req.user) {
-      const currentSpell = req.cart.spells.find(
-        spell => spell.id === +req.params.id
-      )
-      await req.cart.order.removeSpell(currentSpell)
+      const spell = await Spell.findById(req.params.spellId)
+      const [order] = await Order.findOrCreateCart(req.user)
+      await order.removeSpell(spell)
+      res.json(order)
     } else {
-      req.cart.spells = req.cart.spells.filter(
-        spell => spell.id !== +req.params.id
+      const spells = req.session.cart.spells
+      req.session.cart.spells = spells.filter(
+        spell => spell.id !== +req.params.spellId
       )
+      res.json(req.session.cart)
     }
   } catch (err) {
     next(err)

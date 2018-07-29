@@ -17,10 +17,10 @@ export const getCart = () => async dispatch => {
   }
 }
 
-export const addToCart = spell => async dispatch => {
+export const addToCart = (spell, quantity) => async dispatch => {
   try {
-    await axios.put('/api/cart', spell)
-    getCart()
+    const {data} = await axios.put(`/api/cart/${spell.id}`, {quantity})
+    dispatch(editedCart(data))
   } catch (e) {
     console.error(e)
   }

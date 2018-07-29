@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getCart} from '../store'
 import LineItem from './lineItem'
+import {totalmem} from 'os'
 
 class Cart extends Component {
   componentDidMount() {
@@ -23,15 +24,26 @@ class Cart extends Component {
 
   render() {
     const cart = this.props.cart
-    console.log('CART', cart)
     return (
       <div>
         <h2>My Cart</h2>
-        {cart ? (
-          cart.spells.map(spell => <LineItem key={spell.id} spell={spell} />)
-        ) : (
-          <h3>Your cart is empty</h3>
-        )}
+        <div>
+          {cart.spells.length ? (
+            <div>
+              {cart.spells.map(spell => (
+                <LineItem key={spell.id} spell={spell} />
+              ))}
+              <h3>
+                Subtotal: $
+                {cart.spells.reduce((total, sp) => {
+                  return total + sp.spellorders.quantity * sp.spellorders.price
+                }, 0)}
+              </h3>
+            </div>
+          ) : (
+            <h3>Your cart is empty</h3>
+          )}
+        </div>
       </div>
     )
   }
