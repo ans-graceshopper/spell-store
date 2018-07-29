@@ -36,7 +36,7 @@ class LineItem extends Component {
       <div>
         <h3>{spell.title}</h3>
         <p>Quantity: {spell.spellorders.quantity}</p>
-        <p>Price: {spell.spellorders.price}</p>
+        <p>Price: ${spell.spellorders.price}</p>
         <button onClick={() => removeSpell(spell)}>Remove</button>
         <form onSubmit={this.handleSubmit}>
           <button className="btn btn-primary" type="submit">

@@ -19,8 +19,8 @@ export const getCart = () => async dispatch => {
 
 export const addToCart = (spell, quantity) => async dispatch => {
   try {
-    await axios.put(`/api/cart/${spell.id}`, {quantity})
-    getCart()
+    const {data} = await axios.put(`/api/cart/${spell.id}`, {quantity})
+    dispatch(editedCart(data))
   } catch (e) {
     console.error(e)
   }
@@ -29,7 +29,7 @@ export const addToCart = (spell, quantity) => async dispatch => {
 export const removeFromCart = spell => async dispatch => {
   try {
     await axios.delete(`/api/cart/${spell.id}`)
-    getCart()
+    dispatch(removedFromCart(spell.id))
   } catch (e) {
     console.error(e)
   }
