@@ -34,7 +34,8 @@ router.use('/', async (req, res, next) => {
           isCart: true,
         },
       })
-      req.cart = order
+      req.cart = {}
+      req.cart.order = order
       req.cart.spells = await order.getSpells()
     } else {
       if (!req.session.cart) {
