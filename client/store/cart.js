@@ -1,10 +1,12 @@
 import axios from 'axios'
 
-const GOT_CART = 'GOT_CART'
-const EDITED_CART = 'EDIT_CART'
+const GOT_CART = 'GOT_CART',
+  EDITED_CART = 'EDIT_CART',
+  REMOVED_FROM_CART = 'REMOVED_FROM_CART'
 
 export const gotCart = cart => ({type: GOT_CART, cart})
 export const editedCart = spell => ({type: EDITED_CART, spell})
+export const removedFromCart = spellId => ({type: REMOVED_FROM_CART, spellId})
 
 export const getCart = () => async dispatch => {
   try {
@@ -27,7 +29,7 @@ export const addToCart = spell => async dispatch => {
 export const removeFromCart = spell => async dispatch => {
   try {
     await axios.delete(`/api/cart/${spell.id}`)
-    getCart()
+    dispatch(removedFromCart(spell.id))
   } catch (e) {
     console.error(e)
   }
@@ -64,6 +66,14 @@ const cartReducer = (cart = initialCart, action) => {
         if (spell.id === action.spell.id) return action.spell
         else return spell
       })
+      return {...cart, spells: updatedSpells}
+    }
+
+    case REMOVED_FROM_CART: {
+      const updatedSpells = cart.spells.filter(
+        spell => spell.id !== +action.spellId
+      )
+
       return {...cart, spells: updatedSpells}
     }
 
