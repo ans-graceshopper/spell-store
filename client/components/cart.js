@@ -23,15 +23,19 @@ class Cart extends Component {
 
   render() {
     const cart = this.props.cart
-    console.log('CART', cart)
     return (
       <div>
         <h2>My Cart</h2>
-        {cart ? (
-          cart.spells.map(spell => <LineItem key={spell.id} spell={spell} />)
-        ) : (
-          <h3>Your cart is empty</h3>
-        )}
+        <div>
+          {cart.spells ? (
+            cart.spells.map(spell => <LineItem key={spell.id} spell={spell} />)
+          ) : (
+            <h3>Your cart is empty</h3>
+          )}
+        </div>
+        <div>
+          <h3>Subtotal: {}</h3>
+        </div>
       </div>
     )
   }

@@ -70,10 +70,10 @@ const createOrders = async () => {
     const order3 = await Order.create({isCart: false, status: 'completed'})
     const order4 = await Order.create({isCart: false, status: 'shipped'})
 
-    await order1.addSpells(spells)
-    await order2.addSpells(spells)
-    await order3.addSpells(spells)
-    await order4.addSpells(spells)
+    // await order1.addSpells(spells)
+    // await order2.addSpells(spells)
+    // await order3.addSpells(spells)
+    // await order4.addSpells(spells)
 
     await order1.setUser(users[0])
     await order2.setUser(users[0])

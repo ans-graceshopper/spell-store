@@ -31,9 +31,9 @@ const Spell = db.define('spell', {
 
   price: {
     type: Sequelize.INTEGER,
-    // get() {
-    //   return this.getDataValue('price') / 100
-    // }, // TODO make price getter more robust
+    get() {
+      return this.getDataValue('price') / 100
+    }, // TODO make price getter more robust
   },
   // make own table for extensibility; in short term make enum
   magic_school: {

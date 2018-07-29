@@ -5,10 +5,16 @@ const SpellOrders = db.define('spellorders', {
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false,
-    defaultValue: 1, // after added to order so defaults to one
   },
   price: {
     type: Sequelize.INTEGER,
+    allowNull: false,
+    set(currentPrice) {
+      return this.setDataValue('price', currentPrice * 100)
+    },
+    get() {
+      return this.getDataValue('price') / 100
+    },
   },
 })
 

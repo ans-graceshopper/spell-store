@@ -15,9 +15,9 @@ export const getCart = () => async dispatch => {
   }
 }
 
-export const addToCart = spell => async dispatch => {
+export const addToCart = (spell, quantity) => async dispatch => {
   try {
-    await axios.put('/api/cart', spell)
+    await axios.put(`/api/cart/${spell.id}`, {quantity})
     getCart()
   } catch (e) {
     console.error(e)

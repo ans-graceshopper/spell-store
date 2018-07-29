@@ -4,12 +4,12 @@ import {removeFromCart} from '../store'
 
 const LineItem = props => {
   const {spell, removeSpell} = props
-  //console.log('ORDERS', spell.orders)
+  // console.log('SPELL', spell)
   return (
     <div>
       <h3>{spell.title}</h3>
-      <p>Quantity: {}</p>
-      <p>Price: {}</p>
+      <p>Quantity: {spell.spellorders.quantity}</p>
+      <p>Price: {spell.spellorders.price}</p>
       <button onClick={() => removeSpell(spell)}>Remove</button>
     </div>
   )
