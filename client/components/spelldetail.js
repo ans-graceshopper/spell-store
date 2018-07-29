@@ -5,6 +5,7 @@ const SpellDetail = props => {
   const {spells, user, match} = props
   const spellId = match.params.id
   const spell = spells.find(spl => spl.id === Number(spellId))
+
   const {
     title,
     description,
@@ -14,17 +15,21 @@ const SpellDetail = props => {
     price,
     magic_school,
     skill_level,
+    reviews,
   } = spell
+  const avgRating = reviews
+    .map(review => review.rating)
+    .reduce((a, b) => (a + b) / reviews.length)
   return spell ? (
     <div className="main container">
       <div className="card mt-4">
-        <img className="card-img-top img-fluid" src={images[0]} />
+        <img className="card-img-top img-fluid img-detail" src={images[0]} />
         <div className="card-body">
           <h3 className="card-title">{title}</h3>
           <h4>{price} gold</h4>
           <p>In stock</p>
           <p className="card-text">{description}</p>
-          <p clasName="card-text">Magic School: {magic_school}</p>
+          <p className="card-text">Magic School: {magic_school}</p>
           <p>Skill Level: {skill_level} </p>
 
           {user.isAdmin ? (
@@ -41,9 +46,28 @@ const SpellDetail = props => {
       <div className="card card-outline-secondary my-4">
         <div className="card-header">Reviews</div>
         <div className="card-body">
-          {/* map through reviews and return the p, small, and hr elements below for each one */}
-          <p>Review content goes here</p>
-          <small className="text-muted">Posted by Reviewer Name</small>
+          {reviews ? (
+            <div>
+              <h3>
+                {avgRating} stars based on {reviews.length} reviews.
+              </h3>
+
+              <ul className="list-group">
+                {reviews.map(review => {
+                  return (
+                    <li className="list-group-item" key={review.id}>
+                      <h5>{'*'.repeat(+review.rating)}</h5>
+                      <h6>{review.rating}</h6>
+                      <p>{review.content}</p>
+                      <small className="text-muted">Posted by user</small>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          ) : (
+            <div>No reviews.</div>
+          )}
           <hr />
           <a href="#" className="btn btn-success">
             Leave a Review
