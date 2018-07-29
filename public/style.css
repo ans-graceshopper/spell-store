@@ -19,3 +19,16 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.main {
+  padding-top: 120px;
+}
+
+.card-group {
+  flex-wrap: wrap;
+}
+
+#spell-list .card {
+  min-width: 200px;
+  max-width: 200px;
+}
