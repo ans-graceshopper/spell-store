@@ -48,29 +48,38 @@ router.put('/:spellId', async (req, res, next) => {
       if (!req.session.cart) {
         createSessionCart(req)
       }
-      // if adding for the first time
-      req.session.cart.spells = [
-        ...req.session.cart.spells,
-        {
-          ...spell,
+      const spells = req.session.cart.spells
+      let updatedSpells = spells.slice()
+      console.log('SPELLS BEFORE IN API SESSION', spells)
+
+      // search for current spell in spells array
+      const foundSpell = spells.includes(spell.dataValues)
+      console.log('FOUND SPELL', foundSpell)
+      // if found, do a map and change the quantity
+      if (foundSpell) {
+        updatedSpells = spells.map(sp => {
+          if (sp.id === req.params.spellId) {
+            return {
+              ...sp,
+              spellorders: {
+                quantity: req.body.quantity,
+                price: sp.price,
+              },
+            }
+          } else return sp
+        })
+      } else {
+        // if not found, simply push to copy of spells array
+        updatedSpells.push({
+          ...spell.dataValues,
           spellorders: {
             quantity: req.body.quantity,
             price: spell.price,
           },
-        },
-      ]
-      // if already in the session cart
-      req.session.cart.spells = req.session.cart.spells.map(elem => {
-        if (elem.id === req.params.spellId) {
-          return {
-            ...elem,
-            spellorders: {
-              quantity: req.body.quantity,
-              price: elem.price,
-            },
-          }
-        } else return elem
-      })
+        })
+      }
+      req.session.cart.spells = updatedSpells
+      console.log('SPELLS AFTER IN API SESSION', updatedSpells)
       res.json(req.session.cart)
     }
   } catch (err) {
