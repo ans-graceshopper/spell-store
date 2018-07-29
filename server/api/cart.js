@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order, Spell, SpellOrders} = require('../db/models')
+const {Order, Spell} = require('../db/models')
 module.exports = router
 
 const createSessionCart = req => {
@@ -83,14 +83,9 @@ router.delete('/:spellId', async (req, res, next) => {
   try {
     if (req.user) {
       const spell = await Spell.findById(req.params.spellId)
-      const cartOrder = await Order.findOne({
-        where: {
-          userId: req.user.id,
-          isCart: true,
-        },
-      })
-      await cartOrder.removeSpell(spell)
-      res.json(cartOrder)
+      const [order] = await Order.findOrCreateCart(req.user)
+      await order.removeSpell(spell)
+      res.json(order)
     } else {
       req.cart.spells = req.cart.spells.filter(
         spell => spell.id !== +req.params.id
