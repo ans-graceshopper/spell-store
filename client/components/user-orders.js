@@ -1,85 +1,43 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import OrderList from './user-order-list'
+import OrderDetail from './user-order-detail'
 
-const OrderDetails = props => {
-  const {spells} = props.order
-  if (!spells) return <div />
-  return (
-    <div>
-      <table>
-        <tbody>
-          <tr>
-            <th>Spell</th>
-            <th>Spell Description</th>
-            <th>Spell Skill Level</th>
-            <th>School of Magic</th>
-          </tr>
-          {spells.map(spell => {
-            return (
-              <tr key={spell.id}>
-                <td>{spell.name}</td>
-                <td>{spell.description}</td>
-                <td>skill</td>
-                <td>school</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-    </div>
-  )
-}
+class UserOrders extends Component {
+  constructor() {
+    super()
+    this.state = {
+      selectedOrder: {},
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
 
-const OrderList = props => {
-  const {orders} = props
-  return (
-    <div>
-      <table>
-        <tbody>
-          <tr>
-            <th>Order #</th>
-            <th>Order Status</th>
-            <th>Order Detail</th>
-          </tr>
-
-          {props.orders.map(order => {
-            return (
-              <tr key={order.id}>
-                <td>{order.id}</td>
-                <td>{order.status}</td>
-                <td>Order Detail (tbd)</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-    </div>
-  )
-}
-
-const UserOrders = props => {
-  const {user, orders} = props
-  return (
-    <div>
-      <h3>Orders</h3>
-      {orders ? (
-        <div>
-          <OrderList user={user} orders={orders} />
-          <OrderDetails order={orders[0]} />
-        </div>
-      ) : (
-        <h3>no orders.</h3>
-      )}
-    </div>
-  )
-}
-/**
- * CONTAINER
- */
-const mapState = state => {
-  return {
-    orders: state.user.orders,
+  handleClick(order) {
+    this.setState({selectedOrder: order})
+  }
+  render() {
+    const {selectedOrder} = this.state
+    return (
+      <div>
+        <h3>WELCOME TO THE THUNDERDOME, {this.props.user.email}!</h3>
+        <OrderList
+          orders={this.props.user.orders}
+          handleClick={this.handleClick}
+        />
+        {selectedOrder ? (
+          <OrderDetail spells={selectedOrder.spells} />
+        ) : (
+          <div />
+        )}
+      </div>
+    )
   }
 }
 
-export default connect(mapState)(UserOrders)
+/**
+ * CONTAINER
+ */
+const mapState = state => ({user: state.user, orders: state.user.orders})
+const mapDispatch = null
+
+export default connect(mapState, mapDispatch)(UserOrders)
