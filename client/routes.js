@@ -6,6 +6,7 @@ import {
   Login,
   Signup,
   UserHome,
+  UserOrders,
   AllSpells,
   SpellDetail,
   AddSpell,
@@ -41,6 +42,7 @@ class Routes extends Component {
           {isLoggedIn && (
             <Switch>
               <Route path="/home" component={UserHome} />
+              <Route path="/users/:id/orders" component={UserOrders} />
 
               {/* ADMIN ROUTES */}
               {isAdmin && (

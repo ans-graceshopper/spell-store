@@ -6,7 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
-
+const SHOW_ORDER = 'SHOW_ORDER'
 /**
  * INITIAL STATE
  */
@@ -16,6 +16,7 @@ const defaultUser = {}
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
+export const showOrder = id => ({type: SHOW_ORDER, id})
 const removeUser = () => ({type: REMOVE_USER})
 
 /**
