@@ -4,30 +4,24 @@ import OrderLineItem from './user-order-lineitem'
 //import {showOrder} from '../store'
 
 const OrderList = props => {
-  const handleClick = props.handleClick
-
   const orders = props.orders
-  if (!orders) return <div>You have no previous orders.</div>
+  if (!orders) return <h2>You have no previous orders.</h2>
   return (
     <div>
-      <table>
-        <tbody>
+      <table className="table">
+        <thead className="thead-light">
           <tr>
-            <th>Order Number</th>
-            <th>Status</th>
-            <th>Date</th>
-            <th>Detail</th>
-            <th>Price</th>
+            <th scope="col">#</th>
+            <th scope="col">Order Status</th>
+            <th scope="col">Date Placed</th>
+            <th scope="col">Order Detail</th>
+            <th scope="col">Order Price</th>
+            <th scope="col" />
           </tr>
-
+        </thead>
+        <tbody>
           {orders.map(order => {
-            return (
-              <OrderLineItem
-                key={order.id}
-                order={order}
-                handleClick={handleClick}
-              />
-            )
+            return <OrderLineItem key={order.id} order={order} />
           })}
         </tbody>
       </table>

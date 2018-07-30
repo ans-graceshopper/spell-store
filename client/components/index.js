@@ -5,7 +5,9 @@
  */
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
+export {default as UserAccount} from './user-account'
 export {default as UserOrders} from './user-orders'
+export {default as UserOrderDetail} from './user-order-detail'
 export {default as AllSpells} from './allspells'
 export {default as AddSpell} from './addSpell'
 export {default as EditSpell} from './editspell'

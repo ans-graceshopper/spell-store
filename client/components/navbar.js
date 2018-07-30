@@ -26,7 +26,12 @@ const Navbar = ({id, handleClick, isLoggedIn}) => (
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to={`/users/${id}/orders`}>
+            <Link className="nav-link" to="/account">
+              Your Account
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/orders">
               Your Orders
             </Link>
           </li>
