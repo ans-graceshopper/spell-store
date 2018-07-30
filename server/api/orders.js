@@ -13,13 +13,12 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// CURRENTLY LIVES IN THE USERS.JS ROUTE FILE - SHOULD MOVE TO HERE AND UPDATE THUNKS
-// router.get('/:id', async (req, res, next) => {
-//   try {
-//     const user = await User.findById(req.params.id)
-//     const orderHistory = await user.getOrders()
-//     res.json(orderHistory)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+router.get('/:id/spells', async (req, res, next) => {
+  try {
+    const order = await Order.findById(req.params.id)
+    const orderSpells = await order.getSpells()
+    res.json(orderSpells)
+  } catch (err) {
+    next(err)
+  }
+})
