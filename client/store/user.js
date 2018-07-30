@@ -7,7 +7,6 @@ import history from '../history'
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const UPDATED_USER = 'UPDATE_USER'
-const GOT_USER_ORDERS = 'GOT_USER_ORDERS'
 
 /**
  * INITIAL STATE
@@ -20,22 +19,10 @@ const defaultUser = {}
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const updatedUser = user => ({type: UPDATED_USER, user})
-const gotUserOrders = userOrders => ({type: GOT_USER_ORDERS, userOrders})
 
 /**
  * THUNK CREATORS
  */
-
-export const getUserOrders = async (dispatch, id) => {
-  try {
-    console.log(dispatch)
-    const res = await axios.get(`/api/users/${id}/orders`)
-    console.log('getUserOrders res.data: ', res.data)
-    return dispatch(gotUserOrders({orders: res.data}))
-  } catch (e) {
-    console.error(e)
-  }
-}
 
 export const updateUser = user => async dispatch => {
   try {
@@ -90,8 +77,6 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
-    case GOT_USER_ORDERS:
-      return action.user.orders
     case UPDATED_USER: {
       return action.user
     }

@@ -17,26 +17,26 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// get all orders for logged in user
-router.get('/:id', async (req, res, next) => {
-  try {
-    const user = await User.findById(req.params.id)
-    const orderHistory = await user.getOrders()
-    res.json(orderHistory)
-  } catch (err) {
-    next(err)
-  }
-})
+// // get all orders for logged in user
+// router.get('/:id', async (req, res, next) => {
+//   try {
+//     const user = await User.findById(req.params.id)
+//     const orderHistory = await user.getOrders()
+//     res.json(orderHistory)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
 // get all orders for logged in user
 router.get('/:id/orders', async (req, res, next) => {
   try {
-    const user = await User.findOne({
-      where: {id: req.params.id},
-      include: [Order],
+    const orders = await Order.findAll({
+      where: {userId: req.params.id},
+      // include: [Spell],
     })
 
-    res.json(user)
+    res.json(orders)
   } catch (err) {
     next(err)
   }

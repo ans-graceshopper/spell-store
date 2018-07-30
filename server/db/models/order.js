@@ -27,4 +27,11 @@ Order.findOrCreateCart = user => {
   })
 }
 
+// Order.prototype.getTotal = async function() {
+//   const orderSpells = await this.getSpells()
+//   console.log('models/order instance method', orderSpells.spellorders)
+//   return orderSpells.reduce((total, sp) => {
+//     return total + sp.spellorders.quantity * sp.spellorders.price
+//   }, 0)
+// }
 module.exports = Order

@@ -4,9 +4,7 @@ import OrderList from './user-order-list'
 import {getUserOrders} from '../store'
 
 const initialState = {
-  user: {},
-  orders: [],
-  selectedOrder: {},
+  userOrders: [],
 }
 
 class UserOrders extends Component {
@@ -16,18 +14,15 @@ class UserOrders extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount this: ', this)
-    console.log(this.props.user.id)
-    // trying to retrive a specific users' orders through 'fetch'
-    // if they don't exist here
+    this.props.fetchUserOrders(this.props.user.id)
   }
+
   render() {
-    const user = this.props.user
-    if (!user) return <div />
+    const userOrders = this.props.userOrders
+    if (!userOrders) return <div>no orders.</div>
     return (
       <div>
-        <h3>WELCOME TO THE THUNDERDOME, {user.email}!</h3>
-        <OrderList user={user} orders={user.orders} />
+        <OrderList userOrders={userOrders} />
       </div>
     )
   }
@@ -37,9 +32,11 @@ class UserOrders extends Component {
  * CONTAINER
  */
 const mapState = state => {
-  console.log('user-orders mapState state:', state)
-  return {user: state.user, orders: state.user.orders}
+  return {user: state.user, userOrders: state.userOrders}
 }
 
-const mapDispatch = null
+const mapDispatch = dispatch => ({
+  fetchUserOrders: id => dispatch(getUserOrders(id)),
+})
+
 export default connect(mapState, mapDispatch)(UserOrders)

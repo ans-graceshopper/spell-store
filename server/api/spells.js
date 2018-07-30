@@ -13,10 +13,10 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const spells = await Spell.findById(req.params.id, {
+    const spell = await Spell.findById(req.params.id, {
       include: {model: Review},
     })
-    res.json(spells)
+    res.json(spell)
   } catch (err) {
     next(err)
   }

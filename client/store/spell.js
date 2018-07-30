@@ -35,11 +35,11 @@ export const updateSpell = spell => async dispatch => {
   }
 }
 
-const initialSpells = []
+const initialState = []
 
 // to (hopefully) REDUCE confusion, state shall be just called 'spells', since it's just the array of spells, with no other properties or anything, at the moment.
 
-const spellReducer = (spells = initialSpells, action) => {
+const spellReducer = (spells = initialState, action) => {
   switch (action.type) {
     case GOT_SPELLS: {
       return action.spells
@@ -52,6 +52,7 @@ const spellReducer = (spells = initialSpells, action) => {
         .filter(spell => spell.id !== action.spell.id)
         .concat([action.spell])
     }
+
     default: {
       return spells
     }
