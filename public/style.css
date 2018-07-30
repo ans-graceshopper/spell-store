@@ -34,5 +34,8 @@ form div {
 }
 
 .img-detail {
-  width: 5em;
+  width: 8em;
+}
+tr.order-row:hover {
+  background-color: blue;
 }
