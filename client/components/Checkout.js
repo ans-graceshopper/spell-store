@@ -13,6 +13,7 @@ const CURRENCY = 'USD'
 const fromDollarToCent = amount => amount * 100
 
 const successPayment = data => {
+  console.log(data)
   alert('Payment Successful')
 }
 
@@ -20,23 +21,27 @@ const errorPayment = data => {
   alert('Payment Error')
 }
 
-const onToken = (amount, description) => token =>
+const onToken = (amount, description, metadata) => token =>
   axios
-    .post(PAYMENT_SERVER_URL, {
+    .post('/api/stripe', {
       description,
       source: token.id,
       currency: CURRENCY,
       amount: fromDollarToCent(amount),
+      metadata
     })
-    .then(successPayment)
+    .then(data => successPayment(data))
     .catch(errorPayment)
 
-const Checkout = ({name, description, amount}) => (
+const Checkout = ({name, description, amount, metadata}) => (
   <StripeCheckout
+    allowRememberMe
+    shippingAddress
+    billingAddress
     name={name}
     description={description}
     amount={fromDollarToCent(amount)}
-    token={onToken(amount, description)}
+    token={onToken(amount, description, metadata)}
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
   />

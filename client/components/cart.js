@@ -14,19 +14,6 @@ class Cart extends Component {
     this.props.fetchCart()
   }
 
-  // add to re-render when cart is updated?
-  // shouldComponentUpdate(nextProps) {
-  // console.log('NEXT PROPS', nextProps.cart)
-  // console.log('CURRENT PROPS', this.props.cart)
-  // return nextProps.cart !== this.props.cart
-  // }
-
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.cart !== this.props.cart) {
-  //     this.props.fetchCart()
-  //   }
-  // }
-
   render() {
     const cart = this.props.cart
     const subtotal = cart.spells.reduce((total, sp) => {
@@ -48,9 +35,12 @@ class Cart extends Component {
                     Cancel
                   </button>
                   <Checkout
-                    name="Your spells"
-                    description="a description of the spells you've chosen to purchase"
+                    name="Purchase your spells"
+                    description={`Buy ${
+                      cart.spells.length
+                    } spell(s) for ${subtotal} USD`}
                     amount={subtotal}
+                    metadata={{id: cart.id}}
                   />
                 </div>
               ) : (

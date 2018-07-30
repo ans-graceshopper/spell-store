@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const stripe = require('stripe')(process.env.STRIPE_SECRET)
+const {Order, Spell} = require('../db/models')
 module.exports = router
 
 const postStripeCharge = res => (stripeErr, stripeRes) => {
@@ -10,20 +11,12 @@ const postStripeCharge = res => (stripeErr, stripeRes) => {
   }
 }
 
-router.get('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
-    res.send({
-      message: 'Hello Stripe checkout server!',
-      timestamp: new Date().toISOString(),
-    })
-  } catch (e) {
-    next(e)
-  }
-})
-
-router.post('/', (req, res, next) => {
-  try {
+    console.log('req.body.metadata .............', req.body.metadata)
     stripe.charges.create(req.body, postStripeCharge(res))
+    //const formerCart = await Order.findById(req.body.metadata.id)
+    //await formerCart.update({isCart: false, status: 'submitted'})
   } catch (e) {
     next(e)
   }
