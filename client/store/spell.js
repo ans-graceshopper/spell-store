@@ -2,30 +2,16 @@ import axios from 'axios'
 
 const GOT_SPELLS = 'GOT_SPELLS',
   CREATED_SPELL = 'CREATED_SPELL',
-  UPDATED_SPELL = 'UPDATED_SPELL',
-  GOT_CURRENT_SPELL = 'GOT_CURRENT_SPELL'
+  UPDATED_SPELL = 'UPDATED_SPELL'
 
 export const gotSpells = spells => ({type: GOT_SPELLS, spells})
 export const createdSpell = spell => ({type: CREATED_SPELL, spell})
 export const updatedSpell = spell => ({type: UPDATED_SPELL, spell})
-export const gotCurrentSpell = currentSpell => ({
-  type: GOT_CURRENT_SPELL,
-  currentSpell,
-})
 
 export const getSpells = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/spells')
     dispatch(gotSpells(data))
-  } catch (e) {
-    console.error(e)
-  }
-}
-
-export const getCurrentSpell = id => async dispatch => {
-  try {
-    const {data} = await axios.get(`/api/spells/${id}`)
-    dispatch(gotCurrentSpell(data))
   } catch (e) {
     console.error(e)
   }
@@ -69,17 +55,6 @@ const spellReducer = (spells = initialState, action) => {
 
     default: {
       return spells
-    }
-  }
-}
-
-export const currentSpellReducer = (state = {}, action) => {
-  switch (action.type) {
-    case GOT_CURRENT_SPELL: {
-      return action.currentSpell
-    }
-    default: {
-      return state
     }
   }
 }

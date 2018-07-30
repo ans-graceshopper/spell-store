@@ -22,76 +22,78 @@ class SpellDetail extends Component {
       skill_level,
       reviews,
     } = this.props.currentSpell
-    if (reviews) {
-      const avgRating = reviews
-        .map(review => review.rating)
-        .reduce((a, b) => (a + b) / reviews.length)
-    }
-    if (!this.props.currentSpell) return <div>loading...</div>
-    return this.props.currentSpell ? (
-      <div className="main container">
-        <div className="card mt-4">
-          <img className="card-img-top img-fluid img-detail" src={images[0]} />
-          <div className="card-body">
-            <h3 className="card-title">{title}</h3>
-            <h4>{price} gold</h4>
-            <p>In stock</p>
-            <p className="card-text">{description}</p>
-            <p className="card-text">Magic School: {magic_school}</p>
-            <p>Skill Level: {skill_level} </p>
+    // if (reviews.length > 0) {
+    //   const avgRating = reviews
+    //     .map(review => review.rating)
+    //     .reduce((a, b) => (a + b) / reviews.length)
+    // }
+    if (!this.props.currentSpell.id) return <div>loading...</div>
 
-            {user.isAdmin ? (
-              <NavLink className="btn btn-danger" to={`/spells/${id}/edit`}>
-                Edit
-              </NavLink>
-            ) : (
-              <button className="btn btn-primary" type="button">
-                Add to Cart (NOT WORKING)
-              </button>
-            )}
+    return (
+      this.props.currentSpell.id && (
+        <div className="main container">
+          <div className="card mt-4">
+            <img
+              className="card-img-top img-fluid img-detail"
+              src={images[0]}
+            />
+            <div className="card-body">
+              <h3 className="card-title">{title}</h3>
+              <h4>${price}</h4>
+              <p>In stock</p>
+              <p className="card-text">{description}</p>
+              <p className="card-text">Magic School: {magic_school}</p>
+              <p>Skill Level: {skill_level} </p>
+
+              {this.props.user.isAdmin ? (
+                <NavLink className="btn btn-danger" to={`/spells/${id}/edit`}>
+                  Edit
+                </NavLink>
+              ) : (
+                <button className="btn btn-primary" type="button">
+                  Add to Cart (NOT WORKING)
+                </button>
+              )}
+            </div>
+          </div>
+          <div className="card card-outline-secondary my-4">
+            <div className="card-header">Reviews</div>
+            <div className="card-body">
+              {reviews ? (
+                <div>
+                  <p>RATING stars based on {reviews.length} reviews.</p>
+
+                  <ul className="list-group">
+                    {reviews.map(review => {
+                      return (
+                        <li className="list-group-item" key={review.id}>
+                          <h5>{'*'.repeat(+review.rating)}</h5>
+                          <h6>{review.rating}</h6>
+                          <p>{review.content}</p>
+                          <small className="text-muted">Posted by user</small>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
+              ) : (
+                <div>No reviews.</div>
+              )}
+              <hr />
+              <a href="#" className="btn btn-success">
+                Leave a Review
+              </a>
+            </div>
           </div>
         </div>
-        <div className="card card-outline-secondary my-4">
-          <div className="card-header">Reviews</div>
-          <div className="card-body">
-            {reviews ? (
-              <div>
-                <h3>
-                  {avgRating} stars based on {reviews.length} reviews.
-                </h3>
-
-                <ul className="list-group">
-                  {reviews.map(review => {
-                    return (
-                      <li className="list-group-item" key={review.id}>
-                        <h5>{'*'.repeat(+review.rating)}</h5>
-                        <h6>{review.rating}</h6>
-                        <p>{review.content}</p>
-                        <small className="text-muted">Posted by user</small>
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
-            ) : (
-              <div>No reviews.</div>
-            )}
-            <hr />
-            <a href="#" className="btn btn-success">
-              Leave a Review
-            </a>
-          </div>
-        </div>
-      </div>
-    ) : (
-      <h4>Loading...</h4>
+      )
     )
   }
 }
 
 const mapState = state => ({
   user: state.user,
-  currentSpell: state.currentSpellReducer,
+  currentSpell: state.currentSpell,
 })
 
 const mapDispatch = dispatch => ({
