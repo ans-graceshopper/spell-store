@@ -15,8 +15,8 @@ router.post('/', async (req, res, next) => {
   try {
     console.log('req.body.metadata .............', req.body.metadata)
     stripe.charges.create(req.body, postStripeCharge(res))
-    //const formerCart = await Order.findById(req.body.metadata.id)
-    //await formerCart.update({isCart: false, status: 'submitted'})
+    const formerCart = await Order.findById(req.body.metadata.id)
+    await formerCart.update({isCart: false, status: 'submitted'})
   } catch (e) {
     next(e)
   }
