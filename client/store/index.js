@@ -3,7 +3,7 @@ import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
-import spells from './spell'
+import spells, {currentSpellReducer} from './spell'
 import cart from './cart'
 import orders from './order'
 import userOrders from './user-orders'
@@ -16,6 +16,7 @@ const reducer = combineReducers({
   orders,
   userOrders,
   orderSpells,
+  currentSpellReducer,
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

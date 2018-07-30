@@ -18,11 +18,11 @@ class UserOrders extends Component {
   }
 
   render() {
-    const orders = this.props.userOrders
-    if (!orders) return <div>no orders.</div>
+    const userOrders = this.props.userOrders
+    if (!userOrders) return <div>no orders.</div>
     return (
       <div>
-        <OrderList orders={orders} />
+        <OrderList userOrders={userOrders} />
       </div>
     )
   }
