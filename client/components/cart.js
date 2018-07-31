@@ -49,7 +49,7 @@ class Cart extends Component {
                       cart.spells.length
                     } spell(s) for ${displaySubtotal} USD`}
                     amount={subtotal}
-                    metadata={{id: cart.id, spells: checkoutSpells}}
+                    metadata={{id: cart.id}}
                   />
                 </div>
               ) : (
