@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {removeFromCart, addToCart} from '../store'
+import {removeFromCart, editCart} from '../store'
 
 class LineItem extends Component {
   constructor() {
@@ -26,7 +26,7 @@ class LineItem extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    this.props.addSpellToCart(this.props.spell, this.state.quantity)
+    this.props.updateSpell(this.props.spell, this.state.quantity)
   }
 
   render() {
@@ -61,7 +61,7 @@ class LineItem extends Component {
 
 const mapDispatchToProps = dispatch => ({
   removeSpell: spell => dispatch(removeFromCart(spell)),
-  addSpellToCart: (spell, quantity) => dispatch(addToCart(spell, quantity)),
+  updateSpell: (spell, quantity) => dispatch(editCart(spell, quantity)),
 })
 
 export default connect(null, mapDispatchToProps)(LineItem)
