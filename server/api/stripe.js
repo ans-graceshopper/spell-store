@@ -16,18 +16,7 @@ router.post('/', async (req, res, next) => {
     console.log('req.body.metadata .............', req.body.metadata)
     stripe.charges.create(req.body, postStripeCharge(res))
     const formerCart = await Order.findById(req.body.metadata.id)
-    await formerCart.update({
-      isCart: false,
-      status: 'paid',
-      total: req.body.amount,
-    })
-    // deduct inventory with metadata.spells
-    req.body.metadata.spells.forEach(async spell => {
-      const foundSpell = await Spell.findById(spell.id)
-      foundSpell.update({inventory: foundSpell.inventory - spell.quantity})
-    })
-
-    // await Promise.all(updateSpells)
+    await formerCart.update({isCart: false, status: 'submitted'})
   } catch (e) {
     next(e)
   }
