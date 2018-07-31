@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import AdminOrderList from './user-order-list'
-import {getOrders} from '../store'
+import AdminOrderList from './admin-order-list'
+import {getAllOrders} from '../store'
 
 const initialState = {
-  ordersrders: [],
+  orders: [],
 }
 
 class AllOrders extends Component {
@@ -36,7 +36,7 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => ({
-  fetchOrders: () => dispatch(getOrders()),
+  fetchAllOrders: () => dispatch(getAllOrders()),
 })
 
 export default connect(mapState, mapDispatch)(AllOrders)
