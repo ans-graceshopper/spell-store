@@ -41,7 +41,7 @@ class OrderDetail extends Component {
                   <td>{spell.skill_level}</td>
                   <td>{spell.magic_school}</td>
                   <td>{spell.spellorders.quantity}</td>
-                  <td>${spell.spellorders.price}</td>
+                  <td>${spell.spellorders.price / 100}</td>
                 </tr>
               )
             })}
