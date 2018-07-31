@@ -43,41 +43,39 @@ class Cart extends Component {
                 <LineItem key={spell.id} spell={spell} />
               ))}
             </tbody>
-            {cart.spells && cart.spells.length ? (
-              <div>
-                <h3>Subtotal: ${displaySubtotal}</h3>
-                {this.state.showCheckout ? (
-                  <div>
-                    <button
-                      onClick={() => this.setState({showCheckout: false})}
-                    >
-                      Cancel
-                    </button>
-                    {this.props.user.id ? (
-                      <Checkout
-                        name="Purchase your spells"
-                        description={`Buy ${
-                          cart.spells.length
-                        } spell(s) for ${displaySubtotal} USD`}
-                        amount={subtotal}
-                        metadata={{id: cart.id}}
-                      />
-                    ) : (
-                      <NavLink to="/signup">
-                        Please sign up to complete your purchase.
-                      </NavLink>
-                    )}
-                  </div>
-                ) : (
-                  <button onClick={() => this.setState({showCheckout: true})}>
-                    Checkout
-                  </button>
-                )}
-              </div>
-            ) : (
-              <h3>Your cart is empty</h3>
-            )}
           </table>
+          {cart.spells && cart.spells.length ? (
+            <div>
+              <p>Subtotal: ${displaySubtotal}</p>
+              {this.state.showCheckout ? (
+                <div>
+                  <button onClick={() => this.setState({showCheckout: false})}>
+                    Cancel
+                  </button>
+                  {this.props.user.id ? (
+                    <Checkout
+                      name="Purchase your spells"
+                      description={`Buy ${
+                        cart.spells.length
+                      } spell(s) for ${displaySubtotal} USD`}
+                      amount={subtotal}
+                      metadata={{id: cart.id}}
+                    />
+                  ) : (
+                    <NavLink to="/signup">
+                      Please sign up to complete your purchase.
+                    </NavLink>
+                  )}
+                </div>
+              ) : (
+                <button onClick={() => this.setState({showCheckout: true})}>
+                  Checkout
+                </button>
+              )}
+            </div>
+          ) : (
+            <p>Your cart is empty</p>
+          )}
         </div>
       </div>
     )
