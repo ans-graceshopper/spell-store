@@ -52,7 +52,7 @@ class Routes extends Component {
               {isAdmin && (
                 <Switch>
                   {/* ORDER MANAGEMENT ROUTES */}
-                  <Route path="/admin/orders" component={AllOrders} />
+                  <Route exact path="/admin/orders" component={AllOrders} />
 
                   {/* SPELL MANAGEMENT ROUTES */}
                   <Route exact path="/spells/add" component={AddSpell} />

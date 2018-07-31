@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({id, handleClick, isLoggedIn}) => (
+const Navbar = ({id, handleClick, isLoggedIn, isAdmin}) => (
   <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div className="container">
       <a className="navbar-brand">
@@ -17,19 +17,30 @@ const Navbar = ({id, handleClick, isLoggedIn}) => (
         />
         SpellBinder
       </a>
+
       {isLoggedIn ? (
         <ul className="navbar-nav ml-auto">
+          {isAdmin ? (
+            <li className="nav-item">
+              {/* The navbar will show these links after you log in if you are an admin */}
+              <Link className="nav-link" to="/admin/orders">
+                Admin
+              </Link>
+            </li>
+          ) : (
+            ''
+          )}
           <li className="nav-item">
             {/* The navbar will show these links after you log in */}
             <Link className="nav-link" to="/home">
               Home
             </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link className="nav-link" to="/account">
               Your Account
             </Link>
-          </li>
+          </li> */}
           <li className="nav-item">
             <Link className="nav-link" to="/orders">
               Your Orders
@@ -98,6 +109,7 @@ const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
     id: state.user.id,
+    isAdmin: !!state.user.isAdmin,
   }
 }
 
