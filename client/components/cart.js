@@ -23,7 +23,7 @@ class Cart extends Component {
       <div>
         <h2>My Cart</h2>
         <div>
-          {cart.spells.length ? (
+          {cart.spells && cart.spells.length ? (
             <div>
               {cart.spells.map(spell => (
                 <LineItem key={spell.id} spell={spell} />
