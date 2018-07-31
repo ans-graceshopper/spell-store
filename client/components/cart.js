@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Checkout from './Checkout'
+import {NavLink} from 'react-router-dom'
 
 import {connect} from 'react-redux'
 import {getCart} from '../store'
@@ -8,7 +9,7 @@ import LineItem from './lineItem'
 class Cart extends Component {
   constructor() {
     super()
-    this.state = {checkout: false}
+    this.state = {showCheckout: false}
   }
   componentDidMount() {
     this.props.fetchCart()
@@ -33,22 +34,28 @@ class Cart extends Component {
                 <LineItem key={spell.id} spell={spell} />
               ))}
               <h3>Subtotal: ${displaySubtotal}</h3>
-              {this.state.checkout ? (
+              {this.state.showCheckout ? (
                 <div>
-                  <button onClick={() => this.setState({checkout: false})}>
+                  <button onClick={() => this.setState({showCheckout: false})}>
                     Cancel
                   </button>
-                  <Checkout
-                    name="Purchase your spells"
-                    description={`Buy ${
-                      cart.spells.length
-                    } spell(s) for ${displaySubtotal} USD`}
-                    amount={subtotal}
-                    metadata={{id: cart.id}}
-                  />
+                  {this.props.user.id ? (
+                    <Checkout
+                      name="Purchase your spells"
+                      description={`Buy ${
+                        cart.spells.length
+                      } spell(s) for ${displaySubtotal} USD`}
+                      amount={subtotal}
+                      metadata={{id: cart.id}}
+                    />
+                  ) : (
+                    <NavLink to="/signup">
+                      Please sign up to complete your purchase.
+                    </NavLink>
+                  )}
                 </div>
               ) : (
-                <button onClick={() => this.setState({checkout: true})}>
+                <button onClick={() => this.setState({showCheckout: true})}>
                   Checkout
                 </button>
               )}
@@ -64,6 +71,7 @@ class Cart extends Component {
 
 const mapStateToProps = state => ({
   cart: state.cart,
+  user: state.user,
 })
 
 const mapDispatchToProps = dispatch => ({
