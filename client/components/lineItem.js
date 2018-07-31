@@ -33,28 +33,34 @@ class LineItem extends Component {
     const {spell, removeSpell} = this.props
     if (!spell || !spell.spellorders) return <div>Loading...</div>
     return (
-      <div>
-        <h3>{spell.title}</h3>
-        <p>Quantity: {spell.spellorders.quantity}</p>
-        <p>Price: ${spell.spellorders.price / 100}</p>
-        <button onClick={() => removeSpell(spell)}>Remove</button>
-        <form onSubmit={this.handleSubmit}>
-          <button className="btn btn-primary" type="submit">
-            Update
+      <tr>
+        <th scope="row">{spell.title}</th>
+        <td>{spell.spellorders.quantity}</td>
+        <td>${spell.spellorders.price / 100}</td>
+        <td>
+          <form onSubmit={this.handleSubmit}>
+            <select
+              onChange={this.handleChange}
+              name="quantity"
+              value={this.state.quantity}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button className="btn btn-primary" type="submit">
+              Update
+            </button>
+          </form>
+        </td>
+        <td>
+          <button className="btn btn-danger" onClick={() => removeSpell(spell)}>
+            X
           </button>
-          <select
-            onChange={this.handleChange}
-            name="quantity"
-            value={this.state.quantity}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </form>
-      </div>
+        </td>
+      </tr>
     )
   }
 }

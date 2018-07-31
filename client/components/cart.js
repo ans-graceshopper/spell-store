@@ -28,41 +28,56 @@ class Cart extends Component {
       <div>
         <h2>My Cart</h2>
         <div>
-          {cart.spells && cart.spells.length ? (
-            <div>
+          <table className="table">
+            <thead className="thead-light">
+              <tr>
+                <th scope="col">Spell Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Update</th>
+                <th scope="col">Remove</th>
+              </tr>
+            </thead>
+            <tbody>
               {cart.spells.map(spell => (
                 <LineItem key={spell.id} spell={spell} />
               ))}
-              <h3>Subtotal: ${displaySubtotal}</h3>
-              {this.state.showCheckout ? (
-                <div>
-                  <button onClick={() => this.setState({showCheckout: false})}>
-                    Cancel
+            </tbody>
+            {cart.spells && cart.spells.length ? (
+              <div>
+                <h3>Subtotal: ${displaySubtotal}</h3>
+                {this.state.showCheckout ? (
+                  <div>
+                    <button
+                      onClick={() => this.setState({showCheckout: false})}
+                    >
+                      Cancel
+                    </button>
+                    {this.props.user.id ? (
+                      <Checkout
+                        name="Purchase your spells"
+                        description={`Buy ${
+                          cart.spells.length
+                        } spell(s) for ${displaySubtotal} USD`}
+                        amount={subtotal}
+                        metadata={{id: cart.id}}
+                      />
+                    ) : (
+                      <NavLink to="/signup">
+                        Please sign up to complete your purchase.
+                      </NavLink>
+                    )}
+                  </div>
+                ) : (
+                  <button onClick={() => this.setState({showCheckout: true})}>
+                    Checkout
                   </button>
-                  {this.props.user.id ? (
-                    <Checkout
-                      name="Purchase your spells"
-                      description={`Buy ${
-                        cart.spells.length
-                      } spell(s) for ${displaySubtotal} USD`}
-                      amount={subtotal}
-                      metadata={{id: cart.id}}
-                    />
-                  ) : (
-                    <NavLink to="/signup">
-                      Please sign up to complete your purchase.
-                    </NavLink>
-                  )}
-                </div>
-              ) : (
-                <button onClick={() => this.setState({showCheckout: true})}>
-                  Checkout
-                </button>
-              )}
-            </div>
-          ) : (
-            <h3>Your cart is empty</h3>
-          )}
+                )}
+              </div>
+            ) : (
+              <h3>Your cart is empty</h3>
+            )}
+          </table>
         </div>
       </div>
     )
