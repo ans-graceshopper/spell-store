@@ -3,11 +3,12 @@ import React from 'react'
 import OrderLineItem from './user-order-lineitem'
 
 const OrderList = props => {
-  const userOrders = props.userOrders
-  if (userOrders.length === 0) return <h2>You have no previous orders.</h2>
+  const orders = props.orders.filter(order => !order.isCart)
+  if (!orders) return <div>Loading...</div>
+  if (orders.length === 0) return <h3>You have no previous orders.</h3>
   return (
     <div>
-      <h2>Order History</h2>
+      <h2>Your Order History</h2>
       <table className="table">
         <thead className="thead-light">
           <tr>
@@ -20,7 +21,7 @@ const OrderList = props => {
           </tr>
         </thead>
         <tbody>
-          {userOrders.map(order => {
+          {orders.map(order => {
             return <OrderLineItem key={order.id} order={order} />
           })}
         </tbody>

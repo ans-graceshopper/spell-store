@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import {getSpells, me} from '../store'
+import {getAllSpells, me} from '../store'
 import SpellList from './spelllist'
 
 const initialState = {
@@ -16,7 +16,7 @@ class AllSpells extends Component {
     this.state = initialState
   }
   componentDidMount() {
-    this.props.fetchSpells()
+    this.props.fetchAllSpells()
   }
 
   handleChange = evt => this.setState({[evt.target.name]: evt.target.value})
@@ -100,7 +100,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchSpells: () => dispatch(getSpells()),
+  fetchAllSpells: () => dispatch(getAllSpells()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllSpells)
