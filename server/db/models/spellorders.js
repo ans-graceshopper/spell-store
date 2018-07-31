@@ -9,12 +9,6 @@ const SpellOrders = db.define('spellorders', {
   price: {
     type: Sequelize.INTEGER,
     allowNull: false,
-    set(currentPrice) {
-      return this.setDataValue('price', currentPrice * 100)
-    },
-    get() {
-      return this.getDataValue('price') / 100
-    },
   },
 })
 

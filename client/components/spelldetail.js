@@ -39,7 +39,7 @@ class SpellDetail extends Component {
             />
             <div className="card-body">
               <h3 className="card-title">{title}</h3>
-              <h4>${price}</h4>
+              <h4>${price / 100}</h4>
               <p>In stock</p>
               <p className="card-text">{description}</p>
               <p className="card-text">Magic School: {magic_school}</p>
