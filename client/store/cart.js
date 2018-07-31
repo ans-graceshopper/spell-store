@@ -81,7 +81,13 @@ const cartReducer = (cart = initialCart, action) => {
       return {...cart, spells: updatedSpells}
     }
     case ADDED_TO_CART: {
-      return {...cart, spells: [...cart.spells, action.spell]}
+      return {
+        ...cart,
+        spells: [
+          ...cart.spells,
+          {...action.spell, spellorders: action.spellorders},
+        ],
+      }
     }
     default: {
       return cart
