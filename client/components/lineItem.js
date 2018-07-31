@@ -31,7 +31,7 @@ class LineItem extends Component {
 
   render() {
     const {spell, removeSpell} = this.props
-    if (!spell || !spell.spellorders) return <div>Loading...</div>
+
     return (
       <div>
         <h3>{spell.title}</h3>
