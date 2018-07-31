@@ -17,14 +17,14 @@ const Order = db.define('order', {
   },
 })
 
-Order.findOrCreateCart = user => {
-  return Order.findOrCreate({
-    where: {
-      userId: user.id,
-      isCart: true,
-    },
-    include: [{all: true}],
-  })
-}
+// Order.findOrCreateCart = user => {
+//   return Order.findOrCreate({
+//     where: {
+//       userId: user.id,
+//       isCart: true,
+//     },
+//     include: [{all: true}],
+//   })
+// }
 
 module.exports = Order

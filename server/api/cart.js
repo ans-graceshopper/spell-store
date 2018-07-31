@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order, Spell} = require('../db/models')
+const {Order, Spell, SpellOrders} = require('../db/models')
 module.exports = router
 
 // Session helper functions
@@ -13,6 +13,16 @@ const createSessionCart = req => {
     sessionId: req.session.id,
   }
   return req.session.cart
+}
+
+Order.findOrCreateCart = user => {
+  return Order.findOrCreate({
+    where: {
+      userId: user.id,
+      isCart: true,
+    },
+    include: [{model: Spell}],
+  })
 }
 
 // get cart for a user if logged in, or from session if guest
@@ -44,7 +54,10 @@ router.put('/:spellId', async (req, res, next) => {
           price: spell.price,
         },
       })
-      res.json(order)
+      const updatedSpell = await SpellOrders.findOne({
+        where: {spellId: req.params.spellId, orderId: order.id},
+      })
+      res.json([spell, updatedSpell])
     } else {
       if (!req.session.cart) {
         createSessionCart(req)

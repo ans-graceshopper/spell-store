@@ -6,7 +6,11 @@ const GOT_CART = 'GOT_CART',
   ADDED_TO_CART = 'ADDED_TO_CART'
 
 export const gotCart = cart => ({type: GOT_CART, cart})
-export const editedCart = spell => ({type: EDITED_CART, spell})
+export const editedCart = spellDetails => ({
+  type: EDITED_CART,
+  spell: spellDetails[0],
+  spellorders: spellDetails[1],
+})
 export const removedFromCart = spellId => ({type: REMOVED_FROM_CART, spellId})
 export const addedToCart = spell => ({type: ADDED_TO_CART, spell})
 
@@ -22,7 +26,7 @@ export const getCart = () => async dispatch => {
 export const addToCart = (spell, quantity) => async dispatch => {
   try {
     const {data} = await axios.put(`/api/cart/${spell.id}`, {quantity})
-    dispatch(gotCart(data))
+    dispatch(addedToCart(data))
   } catch (e) {
     console.error(e)
   }
@@ -37,9 +41,9 @@ export const removeFromCart = spell => async dispatch => {
   }
 }
 
-export const editCart = spell => async dispatch => {
+export const editCart = (spell, quantity) => async dispatch => {
   try {
-    const {data} = await axios.put(`/api/cart/${spell.id}`, spell)
+    const {data} = await axios.put(`/api/cart/${spell.id}`, {quantity})
     dispatch(editedCart(data))
   } catch (e) {
     console.error(e)
@@ -64,7 +68,8 @@ const cartReducer = (cart = initialCart, action) => {
     }
     case EDITED_CART: {
       const updatedSpells = cart.spells.map(spell => {
-        if (spell.id === action.spell.id) return action.spell
+        if (spell.id === action.spell.id)
+          return {...action.spell, spellorders: action.spellorders}
         else return spell
       })
       return {...cart, spells: updatedSpells}
