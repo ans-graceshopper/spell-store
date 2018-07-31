@@ -45,8 +45,6 @@ const spellSeed = async () => {
     //console.log(allSpells[i])
     try {
       const spell = await Spell.create(allSpells[i])
-      await spell.addElement(Math.floor(Math.random() * Math.floor(6)))
-      await spell.addElement(Math.floor(Math.random() * Math.floor(6)))
     } catch (err) {
       console.log(err)
     }
