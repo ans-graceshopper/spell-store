@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import {getAllSpells, me} from '../store'
+import {getAllSpells, getAllElements, me} from '../store'
 import SpellList from './spelllist'
+import CheckList from './forms/CheckList'
 
 const initialState = {
   magicSchool: '',
@@ -17,6 +18,7 @@ class AllSpells extends Component {
   }
   componentDidMount() {
     this.props.fetchAllSpells()
+    this.props.fetchAllElements()
   }
 
   handleChange = evt => this.setState({[evt.target.name]: evt.target.value})
@@ -27,7 +29,7 @@ class AllSpells extends Component {
 
   render() {
     const {magicSchool, skillLevel} = this.state
-    const {user} = this.props
+    const {user, elements} = this.props
 
     return (
       <div className="container">
@@ -64,6 +66,7 @@ class AllSpells extends Component {
                   <option value="Expert">Expert</option>
                   <option value="Master">Master</option>
                 </select>
+                {/* ELEMENTS SELECTOR COULD GO HERE. */}
               </form>
             </div>
           </div>
@@ -97,10 +100,12 @@ class AllSpells extends Component {
 const mapStateToProps = state => ({
   spells: state.spells,
   user: state.user,
+  elements: state.elements,
 })
 
 const mapDispatchToProps = dispatch => ({
   fetchAllSpells: () => dispatch(getAllSpells()),
+  fetchAllElements: () => dispatch(getAllElements()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllSpells)

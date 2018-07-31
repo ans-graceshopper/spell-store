@@ -2,6 +2,7 @@ const User = require('./user')
 const Spell = require('./spell')
 const Order = require('./order')
 const Review = require('./review')
+const Element = require('./element')
 const SpellOrders = require('./spellorders')
 
 /**
@@ -16,6 +17,9 @@ Order.belongsTo(User)
 
 Spell.belongsToMany(Order, {through: SpellOrders})
 Order.belongsToMany(Spell, {through: SpellOrders})
+
+Element.belongsToMany(Spell, {through: 'SpellElement'})
+Spell.belongsToMany(Element, {through: 'SpellElement'})
 
 Review.belongsTo(User)
 User.hasMany(Review)
@@ -34,5 +38,6 @@ module.exports = {
   Spell,
   Order,
   Review,
+  Element,
   SpellOrders,
 }

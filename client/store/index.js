@@ -10,6 +10,7 @@ import orders from './order'
 import userOrders from './user-orders'
 import currentOrder from './order-detail'
 import orderSpells from './order-spells'
+import elements from './elements'
 
 const reducer = combineReducers({
   user,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   currentOrder,
   orderSpells,
   currentSpell,
+  elements,
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
@@ -34,3 +36,4 @@ export * from './cart'
 export * from './order'
 export * from './user-orders'
 export * from './order-spells'
+export * from './elements'
