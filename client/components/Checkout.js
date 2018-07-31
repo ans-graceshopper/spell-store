@@ -9,7 +9,6 @@ const PAYMENT_SERVER_URL =
     : 'http://localhost:8080'
 
 const successPayment = data => {
-  console.log(data)
   alert('Payment Successful')
 }
 
