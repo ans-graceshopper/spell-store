@@ -5,7 +5,6 @@ const {User} = require('../server/db/models')
 const {Spell} = require('../server/db/models')
 const {Order} = require('../server/db/models')
 const {Review} = require('../server/db/models')
-const {Element} = require('../server/db/models')
 //const {SpellOrders} = require('../server/db/models')
 const allSpells = require('../server/seed/spellseed')
 
@@ -39,19 +38,6 @@ async function userSeed() {
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
-}
-
-const elementSeed = async () => {
-  try {
-    await Element.create({title: 'Fire'})
-    await Element.create({title: 'Water'})
-    await Element.create({title: 'Lightning'})
-    await Element.create({title: 'Earth'})
-    await Element.create({title: 'Dark'})
-    await Element.create({title: 'Light'})
-  } catch (err) {
-    console.log(err)
-  }
 }
 
 const spellSeed = async () => {
@@ -134,7 +120,6 @@ async function runSeed() {
   try {
     await db.sync({force: true})
     console.log('db synced!')
-    await elementSeed()
     await userSeed()
     await spellSeed()
     await createOrders()
