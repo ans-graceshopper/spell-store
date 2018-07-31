@@ -44,7 +44,7 @@ const spellSeed = async () => {
   for (let i = 0; i < allSpells.length; i++) {
     //console.log(allSpells[i])
     try {
-      await Spell.create(allSpells[i])
+      const spell = await Spell.create(allSpells[i])
     } catch (err) {
       console.log(err)
     }
@@ -52,34 +52,29 @@ const spellSeed = async () => {
   console.log(`seeded ${allSpells.length} spells`)
 }
 
+const randInt = max => {
+  return Math.floor(Math.random() * Math.floor(max))
+}
+const statuses = ['submitted', 'completed', 'shipped']
+
 const createOrders = async () => {
+  const users = await User.findAll()
   try {
-    // SELECT * FROM Spell WHERE id = 12 OR id = 13;
-    const spells = await Spell.findAll({
-      where: {
-        id: {
-          [Op.or]: [1, 2, 3],
-        },
-      },
-    })
+    for (let i = 0; i < 25; i++) {
+      const order = await Order.create({
+        isCart: false,
+        status: statuses[randInt(statuses.length)],
+        total: 10000,
+      })
 
-    const users = await User.findAll()
-
-    const order1 = await Order.create({isCart: true, status: 'open'})
-    const order2 = await Order.create({isCart: false, status: 'submitted'})
-    const order3 = await Order.create({isCart: false, status: 'completed'})
-    const order4 = await Order.create({isCart: false, status: 'shipped'})
-
-    // await order1.addSpells(spells)
-    // await order2.addSpells(spells)
-    // await order3.addSpells(spells)
-    // await order4.addSpells(spells)
-
-    await order1.setUser(users[0])
-    await order2.setUser(users[0])
-    await order3.setUser(users[0])
-    await order4.setUser(users[0])
-
+      for (let j = 0; j < randInt(20); j++) {
+        let spell = await Spell.findById(randInt(90))
+        await order.addSpell(spell, {
+          through: {quantity: randInt(4) + 1, price: randInt(4000)},
+        })
+        await order.setUser(users[randInt(users.length)])
+      }
+    }
     console.log('Orders Seeded Successfully!')
   } catch (err) {
     console.log('ERROR: ', err)
@@ -124,7 +119,6 @@ async function runSeed() {
   try {
     await db.sync({force: true})
     console.log('db synced!')
-
     await userSeed()
     await spellSeed()
     await createOrders()
