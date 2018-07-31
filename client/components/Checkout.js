@@ -8,10 +8,6 @@ const PAYMENT_SERVER_URL =
     ? 'http://spell-binnder.herokuapp.com'
     : 'http://localhost:8080'
 
-const CURRENCY = 'USD'
-
-const fromDollarToCent = amount => amount * 100
-
 const successPayment = data => {
   console.log(data)
   alert('Payment Successful')
@@ -26,9 +22,9 @@ const onToken = (amount, description, metadata) => token =>
     .post('/api/stripe', {
       description,
       source: token.id,
-      currency: CURRENCY,
-      amount: fromDollarToCent(amount),
-      metadata
+      currency: 'USD',
+      amount,
+      metadata,
     })
     .then(data => successPayment(data))
     .catch(errorPayment)
