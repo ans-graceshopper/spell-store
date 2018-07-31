@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import {getOrderSpells, getOrder} from '../store'
+import {getOrderSpells} from '../store'
 
 class OrderDetail extends Component {
   componentDidMount() {
@@ -9,7 +9,7 @@ class OrderDetail extends Component {
     //this.props.fetchCurrentOrder(this.props.match.params.id)
   }
   render() {
-    if (!this.props.orderSpells) return <div>no spells.</div>
+    if (!this.props.spells[0]) return <div>no spells.</div>
     return (
       <div>
         <h3>Order Details</h3>
@@ -31,7 +31,7 @@ class OrderDetail extends Component {
           </tfoot>
 
           <tbody>
-            {this.props.orderSpells.map(spell => {
+            {this.props.spells.map(spell => {
               return (
                 <tr key={spell.id}>
                   <td>
@@ -53,7 +53,7 @@ class OrderDetail extends Component {
 }
 
 const mapState = state => ({
-  orderSpells: state.orderSpells,
+  spells: state.spells,
   //orderTotal: state.orders.currentOrder.total,
 })
 
