@@ -22,10 +22,10 @@ router.post('/', async (req, res, next) => {
       total: req.body.amount,
     })
     // deduct inventory with metadata.spells
-    req.body.metadata.spells.forEach(async spell => {
-      const foundSpell = await Spell.findById(spell.id)
-      foundSpell.update({inventory: foundSpell.inventory - spell.quantity})
-    })
+//     req.body.metadata.spells.forEach(async spell => {
+//       const foundSpell = await Spell.findById(spell.id)
+//       foundSpell.update({inventory: foundSpell.inventory - spell.quantity})
+//     })
 
     // await Promise.all(updateSpells)
   } catch (e) {
