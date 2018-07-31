@@ -10,6 +10,20 @@ router.post('/login', async (req, res, next) => {
       where: {email: req.body.email},
       include: {model: Order, include: [Spell]},
     })
+
+    if (req.session.cart) {
+      const cart = await Order.findOne({where: {userId: user.id, isCart: true}})
+      req.session.cart.spells.forEach(async spell => {
+        const currentSpell = await Spell.findById(+spell.id)
+        await cart.addSpell(currentSpell, {
+          through: {
+            quantity: spell.spellorders.quantity,
+            price: currentSpell.price,
+          },
+        })
+      })
+    }
+
     if (!user) {
       console.log('No such user found:', req.body.email)
       res.status(401).send('Wrong username and/or password')
