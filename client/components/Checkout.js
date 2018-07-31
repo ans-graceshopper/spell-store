@@ -36,9 +36,9 @@ const Checkout = ({name, description, amount, metadata}) => (
     billingAddress
     name={name}
     description={description}
-    amount={fromDollarToCent(amount)}
+    amount={amount}
     token={onToken(amount, description, metadata)}
-    currency={CURRENCY}
+    currency="USD"
     stripeKey={STRIPE_PUBLISHABLE}
   />
 )

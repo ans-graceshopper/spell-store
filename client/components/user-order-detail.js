@@ -9,7 +9,8 @@ class OrderDetail extends Component {
     //this.props.fetchCurrentOrder(this.props.match.params.id)
   }
   render() {
-    if (!this.props.spells[0]) return <div>no spells.</div>
+    if (!this.props.spells[0] || !this.props.spells[0].spellorders)
+      return <div>no spells.</div>
     return (
       <div>
         <h3>Order Details</h3>
