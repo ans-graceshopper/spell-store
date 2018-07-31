@@ -16,9 +16,13 @@ class Cart extends Component {
 
   render() {
     const cart = this.props.cart
-    const subtotal = cart.spells.reduce((total, sp) => {
-      return total + sp.spellorders.quantity * sp.spellorders.price
-    }, 0)
+    let subtotal
+    if (cart.spells) {
+      subtotal =
+        cart.spells.reduce((total, sp) => {
+          return total + sp.spellorders.quantity * sp.spellorders.price
+        }, 0) / 100
+    }
     return (
       <div>
         <h2>My Cart</h2>
