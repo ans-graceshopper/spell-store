@@ -20,7 +20,6 @@ class Cart extends Component {
     let subtotal, displaySubtotal
     if (cart.spells && cart.spells[0] && cart.spells[0].spellorders) {
       subtotal = cart.spells.reduce((total, sp) => {
-        console.log('REDUCING SPELL', sp)
         return total + +sp.spellorders.quantity * sp.spellorders.price
       }, 0)
       displaySubtotal = subtotal / 100
@@ -52,6 +51,7 @@ class Cart extends Component {
                 {this.state.showCheckout ? (
                   <div>
                     <button
+                      className="btn btn-danger"
                       onClick={() => this.setState({showCheckout: false})}
                     >
                       Cancel
@@ -72,7 +72,10 @@ class Cart extends Component {
                     )}
                   </div>
                 ) : (
-                  <button onClick={() => this.setState({showCheckout: true})}>
+                  <button
+                    className="btn btn-success"
+                    onClick={() => this.setState({showCheckout: true})}
+                  >
                     Checkout
                   </button>
                 )}

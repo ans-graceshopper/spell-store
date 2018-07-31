@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {NavLink} from 'react-router-dom'
 import {removeFromCart, editCart} from '../store'
 
 class LineItem extends Component {
@@ -34,7 +35,9 @@ class LineItem extends Component {
     if (!spell || !spell.spellorders) return <div>Loading...</div>
     return (
       <tr>
-        <th scope="row">{spell.title}</th>
+        <th scope="row">
+          <NavLink to={`/spells/${spell.id}`}>{spell.title}</NavLink>
+        </th>
         <td>{spell.spellorders.quantity}</td>
         <td>${spell.spellorders.price / 100}</td>
         <td>
@@ -50,13 +53,16 @@ class LineItem extends Component {
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            <button className="btn btn-primary" type="submit">
+            <button className="btn btn-primary btn-sm" type="submit">
               Update
             </button>
           </form>
         </td>
         <td>
-          <button className="btn btn-danger" onClick={() => removeSpell(spell)}>
+          <button
+            className="btn btn-danger btn-sm"
+            onClick={() => removeSpell(spell)}
+          >
             X
           </button>
         </td>
