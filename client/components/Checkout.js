@@ -14,6 +14,7 @@ const successPayment = data => {
 }
 
 const errorPayment = data => {
+  console.log(data)
   alert('Payment Error')
 }
 
@@ -27,7 +28,7 @@ const onToken = (amount, description, metadata) => token =>
       metadata,
     })
     .then(data => successPayment(data))
-    .catch(errorPayment)
+    .catch(data => errorPayment(data))
 
 const Checkout = ({name, description, amount, metadata}) => (
   <StripeCheckout
