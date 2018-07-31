@@ -16,12 +16,12 @@ class Cart extends Component {
 
   render() {
     const cart = this.props.cart
-    let subtotal
+    let subtotal, displaySubtotal
     if (cart.spells) {
-      subtotal =
-        cart.spells.reduce((total, sp) => {
-          return total + sp.spellorders.quantity * sp.spellorders.price
-        }, 0) / 100
+      subtotal = cart.spells.reduce((total, sp) => {
+        return total + sp.spellorders.quantity * sp.spellorders.price
+      }, 0)
+      displaySubtotal = subtotal / 100
     }
     return (
       <div>
@@ -32,7 +32,7 @@ class Cart extends Component {
               {cart.spells.map(spell => (
                 <LineItem key={spell.id} spell={spell} />
               ))}
-              <h3>Subtotal: ${subtotal}</h3>
+              <h3>Subtotal: ${displaySubtotal}</h3>
               {this.state.checkout ? (
                 <div>
                   <button onClick={() => this.setState({checkout: false})}>
@@ -42,7 +42,7 @@ class Cart extends Component {
                     name="Purchase your spells"
                     description={`Buy ${
                       cart.spells.length
-                    } spell(s) for ${subtotal} USD`}
+                    } spell(s) for ${displaySubtotal} USD`}
                     amount={subtotal}
                     metadata={{id: cart.id}}
                   />
