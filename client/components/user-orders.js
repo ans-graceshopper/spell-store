@@ -4,7 +4,7 @@ import OrderList from './user-order-list'
 import {getUserOrders} from '../store'
 
 const initialState = {
-  userOrders: [],
+  orders: [],
 }
 
 class UserOrders extends Component {
@@ -18,11 +18,11 @@ class UserOrders extends Component {
   }
 
   render() {
-    const userOrders = this.props.userOrders
-    if (!userOrders) return <div>no orders.</div>
+    const orders = this.props.orders
+    if (!orders) return <div>no orders.</div>
     return (
       <div>
-        <OrderList userOrders={userOrders} />
+        <OrderList orders={orders} />
       </div>
     )
   }
@@ -32,7 +32,7 @@ class UserOrders extends Component {
  * CONTAINER
  */
 const mapState = state => {
-  return {user: state.user, userOrders: state.userOrders}
+  return {user: state.user, orders: state.orders}
 }
 
 const mapDispatch = dispatch => ({
