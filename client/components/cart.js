@@ -16,12 +16,17 @@ class Cart extends Component {
 
   render() {
     const cart = this.props.cart
-    let subtotal, displaySubtotal
-    if (cart.spells) {
+    let subtotal, displaySubtotal, checkoutSpells
+    if (cart.spells && cart.spells[0] && cart.spells[0].spellorders) {
       subtotal = cart.spells.reduce((total, sp) => {
         return total + sp.spellorders.quantity * sp.spellorders.price
       }, 0)
       displaySubtotal = subtotal / 100
+
+      checkoutSpells = cart.spells.map(spl => ({
+        id: spl.id,
+        quantity: spl.spellorders.quantity,
+      }))
     }
     return (
       <div>
@@ -44,7 +49,7 @@ class Cart extends Component {
                       cart.spells.length
                     } spell(s) for ${displaySubtotal} USD`}
                     amount={subtotal}
-                    metadata={{id: cart.id}}
+                    metadata={{id: cart.id, spells: checkoutSpells}}
                   />
                 </div>
               ) : (
