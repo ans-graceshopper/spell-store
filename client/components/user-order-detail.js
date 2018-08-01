@@ -6,7 +6,6 @@ import {getOrderSpells} from '../store'
 class OrderDetail extends Component {
   componentDidMount() {
     this.props.fetchOrderSpells(this.props.match.params.id)
-    //this.props.fetchCurrentOrder(this.props.match.params.id)
   }
   render() {
     if (!this.props.spells[0] || !this.props.spells[0].spellorders)
@@ -62,12 +61,10 @@ class OrderDetail extends Component {
 
 const mapState = state => ({
   spells: state.spells,
-  //orderTotal: state.orders.currentOrder.total,
 })
 
 const mapDispatch = dispatch => ({
   fetchOrderSpells: id => dispatch(getOrderSpells(id)),
-  //fetchCurrentOrder: id => dispatch(getOrder(id)),
 })
 
 export default connect(mapState, mapDispatch)(OrderDetail)
