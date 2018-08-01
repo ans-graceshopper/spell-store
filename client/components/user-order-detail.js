@@ -33,7 +33,7 @@ class OrderDetail extends Component {
                     spell =>
                       spell.spellorders.price * spell.spellorders.quantity
                   )
-                  .reduce((a, b) => a + b) / 10}
+                  .reduce((a, b) => a + b) / 100}
               </td>
             </tr>
           </tfoot>
