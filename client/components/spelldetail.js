@@ -39,11 +39,7 @@ class SpellDetail extends Component {
       skill_level,
       reviews,
     } = this.props.currentSpell
-    // if (reviews.length > 0) {
-    //   const avgRating = reviews
-    //     .map(review => review.rating)
-    //     .reduce((a, b) => (a + b) / reviews.length)
-    // }
+
     if (!this.props.currentSpell.id) return <div>loading...</div>
 
     return (

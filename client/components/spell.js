@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {addToCart} from '../store'
 
-// const Spell = props => {
 class Spell extends Component {
   constructor() {
     super()
