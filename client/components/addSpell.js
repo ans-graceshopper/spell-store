@@ -31,7 +31,6 @@ class AddSpell extends React.Component {
 
   handleSubmit = evt => {
     evt.preventDefault()
-    console.log(this.state)
     this.props.postSpell(this.state)
     this.setState(blankState)
   }

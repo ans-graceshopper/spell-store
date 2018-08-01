@@ -5,7 +5,6 @@ const AdminOrderLineItem = props => {
   const {order} = props
   if (!order) return <div />
   const user = order.user
-  console.log(order)
   if (order.length === 0) return <div>no orders.</div>
 
   return (

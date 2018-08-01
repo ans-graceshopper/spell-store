@@ -26,7 +26,6 @@ const postStripeCharge = (res, req) => async (stripeErr, stripeRes) => {
 
 router.post('/', (req, res, next) => {
   try {
-    console.log('METADATA::::::::::::::', req.body.metadata)
     stripe.charges.create(req.body, postStripeCharge(res, req))
   } catch (e) {
     next(e)
