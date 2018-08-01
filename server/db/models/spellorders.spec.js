@@ -31,7 +31,6 @@ describe('Spell model', () => {
       })
 
       let spells = await SpellOrders.findAll({where: {orderId: foundOrder.id}})
-      console.log(spells)
       expect(spells).to.have.lengthOf(1)
     })
 
@@ -53,4 +52,4 @@ describe('Spell model', () => {
       expect(spells[0].quantity).to.equal(2)
     })
   })
-}) // end describe('User model')
+})

@@ -13,7 +13,6 @@ const successPayment = data => {
 }
 
 const errorPayment = data => {
-  console.log(data)
   alert('Payment Error')
 }
 

@@ -20,14 +20,12 @@ class UserAccount extends Component {
   }
 
   componentDidMount() {
-    console.log('USER ACCOUNT THIS: ', this)
     if (this.props.user) {
       this.setState({email: this.props.user.email})
     }
   }
 
   handleChange = evt => {
-    console.log(evt.target.name)
     this.setState({
       [evt.target.name]: evt.target.value,
     })
@@ -51,8 +49,6 @@ class UserAccount extends Component {
 }
 
 const UserForm = props => {
-  console.log('USER FORM PROPS:', props)
-  console.log('USER FORM USER:', props.user)
   const {handleChange, handleSubmit, state} = props
   if (!state) return <div>loading...</div>
 
