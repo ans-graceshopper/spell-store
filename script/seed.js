@@ -72,7 +72,7 @@ const createOrders = async () => {
         await order.addSpell(spell, {
           through: {quantity: randInt(4) + 1, price: randInt(4000)},
         })
-        await order.setUser(users[randInt(users.length)])
+        await order.setUser(randInt(2) + 1)
       }
     }
     console.log('Orders Seeded Successfully!')

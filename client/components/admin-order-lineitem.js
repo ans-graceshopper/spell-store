@@ -12,7 +12,7 @@ const AdminOrderLineItem = props => {
     <tr>
       <th scope="row">{order.id}</th>
       <td>{order.status === 'open' ? 'In Cart' : order.status}</td>
-      <td>{order.status}</td>
+      <td>{order.user.email}</td>
       <td>{order.createdAt}</td>
       <td>${order.total / 100}</td>
 
