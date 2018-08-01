@@ -27,7 +27,14 @@ class OrderDetail extends Component {
           </thead>
           <tfoot className="thead-light">
             <tr>
-              <td>TOTAL: ??? </td>
+              <td>
+                TOTAL: ${this.props.spells
+                  .map(
+                    spell =>
+                      spell.spellorders.price * spell.spellorders.quantity
+                  )
+                  .reduce((a, b) => a + b) / 100}
+              </td>
             </tr>
           </tfoot>
 

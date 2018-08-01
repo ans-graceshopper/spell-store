@@ -3,9 +3,7 @@ import React from 'react'
 import AdminOrderLineItem from './admin-order-lineitem'
 
 const AdminOrderList = props => {
-  const orders = props.orders
-  if (!orders) return <div>Loading...</div>
-  if (orders.length === 0) return <h3>No Orders Exist.</h3>
+  const {allOrders} = props || []
   return (
     <div>
       <h2>All Orders</h2>
@@ -22,7 +20,7 @@ const AdminOrderList = props => {
           </tr>
         </thead>
         <tbody>
-          {orders.map(order => {
+          {allOrders.map(order => {
             return <AdminOrderLineItem key={order.id} order={order} />
           })}
         </tbody>

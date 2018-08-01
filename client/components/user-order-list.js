@@ -15,8 +15,8 @@ const OrderList = props => {
             <th scope="col">#</th>
             <th scope="col">Order Status</th>
             <th scope="col">Date Placed</th>
-            <th scope="col">Order Detail</th>
             <th scope="col">Order Price</th>
+            <th scope="col">Order Details</th>
             <th scope="col" />
           </tr>
         </thead>
