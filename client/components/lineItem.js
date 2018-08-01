@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {NavLink} from 'react-router-dom'
 import {removeFromCart, editCart} from '../store'
 
 class LineItem extends Component {
@@ -33,28 +34,39 @@ class LineItem extends Component {
     const {spell, removeSpell} = this.props
     if (!spell || !spell.spellorders) return <div>Loading...</div>
     return (
-      <div>
-        <h3>{spell.title}</h3>
-        <p>Quantity: {spell.spellorders.quantity}</p>
-        <p>Price: ${spell.spellorders.price / 100}</p>
-        <button onClick={() => removeSpell(spell)}>Remove</button>
-        <form onSubmit={this.handleSubmit}>
-          <button className="btn btn-primary" type="submit">
-            Update
-          </button>
-          <select
-            onChange={this.handleChange}
-            name="quantity"
-            value={this.state.quantity}
+      <tr>
+        <th scope="row">
+          <NavLink to={`/spells/${spell.id}`}>{spell.title}</NavLink>
+        </th>
+        <td>{spell.spellorders.quantity}</td>
+        <td>${spell.spellorders.price / 100}</td>
+        <td>
+          <form onSubmit={this.handleSubmit}>
+            <select
+              onChange={this.handleChange}
+              name="quantity"
+              value={this.state.quantity}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button className="btn btn-primary btn-sm" type="submit">
+              Update
+            </button>
+          </form>
+        </td>
+        <td>
+          <button
+            className="btn btn-danger btn-sm"
+            onClick={() => removeSpell(spell)}
           >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </form>
-      </div>
+            X
+          </button>
+        </td>
+      </tr>
     )
   }
 }

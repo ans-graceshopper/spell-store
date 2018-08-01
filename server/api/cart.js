@@ -46,6 +46,7 @@ router.get('/', async (req, res, next) => {
 router.put('/:spellId', async (req, res, next) => {
   try {
     const spell = await Spell.findById(req.params.spellId)
+    let orderedSpellData
     if (req.user) {
       const [order] = await Order.findOrCreateCart(req.user)
       await order.addSpell(spell, {
@@ -54,15 +55,18 @@ router.put('/:spellId', async (req, res, next) => {
           price: spell.price,
         },
       })
-      const updatedSpell = await SpellOrders.findOne({
+      orderedSpellData = await SpellOrders.findOne({
         where: {spellId: req.params.spellId, orderId: order.id},
       })
-      res.json([spell, updatedSpell])
     } else {
       if (!req.session.cart) {
         createSessionCart(req)
       }
       const spells = req.session.cart.spells
+      orderedSpellData = {
+        quantity: +req.body.quantity,
+        price: spell.price,
+      }
       // search for current spell in spells array
       const foundSpell = spells.find(sp => sp.id === spell.dataValues.id)
       // if found, do a map and change the quantity
@@ -71,10 +75,7 @@ router.put('/:spellId', async (req, res, next) => {
           if (sp.id === +req.params.spellId) {
             return {
               ...sp,
-              spellorders: {
-                quantity: +req.body.quantity,
-                price: spell.price,
-              },
+              spellorders: orderedSpellData,
             }
           } else return sp
         })
@@ -82,14 +83,11 @@ router.put('/:spellId', async (req, res, next) => {
         // if not found, simply push to copy of spells array
         req.session.cart.spells.push({
           ...spell.dataValues,
-          spellorders: {
-            quantity: req.body.quantity,
-            price: spell.price,
-          },
+          spellorders: orderedSpellData,
         })
       }
-      res.json(req.session.cart)
     }
+    res.json([spell, orderedSpellData])
   } catch (err) {
     next(err)
   }
