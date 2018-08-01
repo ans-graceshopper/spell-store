@@ -29,8 +29,11 @@ class OrderDetail extends Component {
             <tr>
               <td>
                 TOTAL: ${this.props.spells
-                  .map(spell.spellorders.price * spell.spellorders.quantity)
-                  .reduce((a, b) => a + b) / 100}
+                  .map(
+                    spell =>
+                      spell.spellorders.price * spell.spellorders.quantity
+                  )
+                  .reduce((a, b) => a + b) / 10}
               </td>
             </tr>
           </tfoot>
