@@ -44,7 +44,7 @@ class SpellDetail extends Component {
 
     return (
       this.props.currentSpell.id && (
-        <div className="main container">
+        <div className="container">
           <div className="card mt-4">
             <img
               className="card-img-top img-fluid img-detail"
