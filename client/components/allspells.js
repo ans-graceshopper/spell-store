@@ -69,6 +69,7 @@ class AllSpells extends Component {
           </div>
 
           <div className="col-lg-9">
+        {/* ternary here to check if filter = all, set filter = all in clearfilters */}
             <SpellList
               handleClick={this.handleClick}
               spells={this.props.spells

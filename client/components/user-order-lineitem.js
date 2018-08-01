@@ -19,7 +19,6 @@ const OrderLineItem = props => {
           Details
         </NavLink>
       </td>
-      {/* price will be fixed later :)*/}
     </tr>
   )
 }
