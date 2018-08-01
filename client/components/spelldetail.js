@@ -1,11 +1,31 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import {getCurrentSpell} from '../store'
+import {getCurrentSpell, addToCart} from '../store'
 
 class SpellDetail extends Component {
+  constructor() {
+    super()
+    this.state = {
+      quantity: 1,
+    }
+
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
   componentDidMount() {
     this.props.fetchCurrentSpell(this.props.match.params.id)
+  }
+
+  handleChange(evt) {
+    this.setState({
+      [evt.target.name]: evt.target.value,
+    })
+  }
+
+  handleSubmit(evt) {
+    evt.preventDefault()
+    this.props.addSpellToCart(this.props.spell, this.state.quantity)
   }
 
   // const {spells, user, match} = props
@@ -51,10 +71,24 @@ class SpellDetail extends Component {
                   Edit
                 </NavLink>
               ) : (
-                <button className="btn btn-primary" type="button">
-                  Add to Cart (NOT WORKING)
-                </button>
+                ''
               )}
+              <form onSubmit={this.handleSubmit}>
+                <button className="btn btn-primary" type="submit">
+                  Add to Cart
+                </button>
+                <select
+                  onChange={this.handleChange}
+                  name="quantity"
+                  value={this.state.quantity}
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </form>
             </div>
           </div>
           <div className="card card-outline-secondary my-4">
@@ -99,5 +133,6 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   fetchCurrentSpell: id => dispatch(getCurrentSpell(id)),
+  addSpellToCart: (spell, quantity) => dispatch(addToCart(spell, quantity)),
 })
 export default connect(mapState, mapDispatch)(SpellDetail)
