@@ -7,7 +7,7 @@ import {logout} from '../store'
 const Navbar = ({id, handleClick, isLoggedIn, isAdmin}) => (
   <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div className="container">
-      <a className="navbar-brand">
+      <Link className="navbar-brand" to="/spells">
         <img
           src="/spellbook.png"
           width="30"
@@ -16,7 +16,7 @@ const Navbar = ({id, handleClick, isLoggedIn, isAdmin}) => (
           alt=""
         />
         SpellBinder
-      </a>
+      </Link>
 
       {isLoggedIn ? (
         <ul className="navbar-nav ml-auto">

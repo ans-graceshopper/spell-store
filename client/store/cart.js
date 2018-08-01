@@ -12,7 +12,11 @@ export const editedCart = spellDetails => ({
   spellorders: spellDetails[1],
 })
 export const removedFromCart = spellId => ({type: REMOVED_FROM_CART, spellId})
-export const addedToCart = spell => ({type: ADDED_TO_CART, spell})
+export const addedToCart = spellDetails => ({
+  type: ADDED_TO_CART,
+  spell: spellDetails[0],
+  spellorders: spellDetails[1],
+})
 
 export const getCart = () => async dispatch => {
   try {
@@ -81,7 +85,11 @@ const cartReducer = (cart = initialCart, action) => {
       return {...cart, spells: updatedSpells}
     }
     case ADDED_TO_CART: {
-      return {...cart, spells: [...cart.spells, action.spell]}
+      const newSpell = {...action.spell, spellorders: action.spellorders}
+      return {
+        ...cart,
+        spells: [...cart.spells, newSpell],
+      }
     }
     default: {
       return cart

@@ -9,9 +9,7 @@ export const gotCurrentSpell = currentSpell => ({
 
 export const getCurrentSpell = id => async dispatch => {
   try {
-    console.log('INSIDE GET CURRENT SPELL')
     const {data} = await axios.get(`/api/spells/${id}`)
-    console.log('AFTER WE GOT CURRENT SPELL FROM API')
     dispatch(gotCurrentSpell(data))
   } catch (e) {
     console.error(e)
