@@ -9,10 +9,17 @@ class SpellDetail extends Component {
     this.state = {
       quantity: 1,
     }
+<<<<<<< HEAD
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
+=======
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+>>>>>>> master
   componentDidMount() {
     this.props.fetchCurrentSpell(this.props.match.params.id)
   }
@@ -25,12 +32,18 @@ class SpellDetail extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
+<<<<<<< HEAD
     this.props.addSpellToCart(this.props.spell, this.state.quantity)
   }
 
   // const {spells, user, match} = props
   // const spellId = match.params.id
   // const spell = spells.find(spl => spl.id === Number(spellId))
+=======
+    this.props.addSpellToCart(this.props.currentSpell, this.state.quantity)
+  }
+
+>>>>>>> master
   render() {
     const {
       title,
@@ -71,7 +84,26 @@ class SpellDetail extends Component {
                   Edit
                 </NavLink>
               ) : (
+<<<<<<< HEAD
                 ''
+=======
+                <form onSubmit={this.handleSubmit}>
+                  <button className="btn btn-primary" type="submit">
+                    Add to Cart
+                  </button>
+                  <select
+                    onChange={this.handleChange}
+                    name="quantity"
+                    value={this.state.quantity}
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </form>
+>>>>>>> master
               )}
               <form onSubmit={this.handleSubmit}>
                 <button className="btn btn-primary" type="submit">

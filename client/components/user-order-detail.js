@@ -32,6 +32,7 @@ class OrderDetail extends Component {
               <td />
               <td />
               <td>
+<<<<<<< HEAD
                 <h6>TOTAL:</h6>
               </td>
               <td>
@@ -43,6 +44,14 @@ class OrderDetail extends Component {
                     )
                     .reduce((a, b) => a + b) / 100}`}
                 </h6>
+=======
+                TOTAL: ${this.props.spells
+                  .map(
+                    spell =>
+                      spell.spellorders.price * spell.spellorders.quantity
+                  )
+                  .reduce((a, b) => a + b) / 100}
+>>>>>>> master
               </td>
             </tr>
           </tfoot>

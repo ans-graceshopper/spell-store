@@ -72,8 +72,8 @@ class Routes extends Component {
             </Switch>
           )}
 
-          {/* Displays our Login component as a fallback */}
-          <Route component={Login} />
+          {/* Displays our All Spells shop component as a fallback */}
+          <Route component={AllSpells} />
         </Switch>
       </div>
     )
