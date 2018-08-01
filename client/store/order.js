@@ -36,7 +36,6 @@ export const getAllOrders = () => async dispatch => {
 
 export const getUserOrders = id => async dispatch => {
   try {
-    console.log(dispatch)
     const res = await axios.get(`/api/users/${id}/orders`)
     dispatch(gotUserOrders(res.data))
   } catch (err) {

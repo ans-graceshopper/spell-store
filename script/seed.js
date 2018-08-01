@@ -60,11 +60,11 @@ const statuses = ['submitted', 'completed', 'shipped']
 const createOrders = async () => {
   const users = await User.findAll()
   try {
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 5; i++) {
       const order = await Order.create({
         isCart: false,
         status: statuses[randInt(statuses.length)],
-        total: 10000,
+        total: randInt(10000),
       })
 
       for (let j = 0; j < randInt(20); j++) {

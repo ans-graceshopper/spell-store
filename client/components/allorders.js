@@ -18,11 +18,12 @@ class AllOrders extends Component {
   }
 
   render() {
-    const orders = this.props.orders
-    if (!orders) return <div>no orders.</div>
+    const allOrders = this.props.allOrders
+    if (!allOrders) return <div>loading...</div>
+    if (allOrders.length === 0) return <div>no orders.</div>
     return (
       <div>
-        <AdminOrderList orders={orders} />
+        <AdminOrderList allOrders={allOrders} />
       </div>
     )
   }
@@ -31,8 +32,9 @@ class AllOrders extends Component {
 /**
  * CONTAINER
  */
+
 const mapState = state => {
-  return {orders: state.orders}
+  return {allOrders: state.allOrders}
 }
 
 const mapDispatch = dispatch => ({

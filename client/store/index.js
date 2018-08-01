@@ -10,6 +10,7 @@ import orders from './order'
 import userOrders from './user-orders'
 import currentOrder from './order-detail'
 import orderSpells from './order-spells'
+import allOrders from './all-orders'
 
 const reducer = combineReducers({
   user,
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   cart,
   orders,
   userOrders,
+  allOrders,
   currentOrder,
   orderSpells,
   currentSpell,

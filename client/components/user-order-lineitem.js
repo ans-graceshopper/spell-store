@@ -10,7 +10,7 @@ const OrderLineItem = props => {
       <td>{order.status}</td>
       <td>{order.createdAt}</td>
       <td>count???</td>
-      <td>$999</td>
+      <td>${order.total / 100}</td>
       <td>
         <NavLink
           className="btn btn-light"
